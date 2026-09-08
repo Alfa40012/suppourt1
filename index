@@ -1,125 +1,84 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الدعم الفني | Technical Support</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Tahoma, sans-serif;
-      background: linear-gradient(135deg, #1e88e5, #42a5f5);
-      color: #fff;
-      text-align: center;
-    }
-    header {
-      padding: 40px 20px;
-    }
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-    .container {
-      background: #ffffff;
-      color: #333;
-      border-radius: 20px;
-      margin: 20px auto;
-      padding: 30px;
-      max-width: 900px;
-    }
-    .qr img {
-      width: 220px;
-      margin: 20px 0;
-    }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
-      margin-top: 30px;
-    }
-    .step {
-      background: #f5f5f5;
-      padding: 20px;
-      border-radius: 15px;
-    }
-    .step h3 {
-      margin-bottom: 10px;
-      color: #1e88e5;
-    }
-    .features {
-      margin-top: 30px;
-    }
-    .features ul {
-      list-style: none;
-      padding: 0;
-    }
-    .features li {
-      margin: 10px 0;
-      font-size: 1.1rem;
-    }
-    .btn {
-      display: inline-block;
-      margin-top: 25px;
-      padding: 15px 30px;
-      background: #1e88e5;
-      color: #fff;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-    footer {
-      margin: 30px 0 10px;
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-  </style>
-</head>
-<body>  <header>
-    <h1>الدعم الفني</h1>
-    <p>يرجى مسح الرمز للتواصل مع فريق الدعم الفني</p>
-  </header>  <div class="container">
-    <h2>تواصل معنا بسهولة</h2>
-    <p>نوفر لك دعمًا فنيًا سريعًا ومباشرًا لحل جميع مشاكلك التقنية.</p><div class="qr">
-  <!-- ضع صورة QR هنا -->
-  <img src="images/qr.png" alt="QR Code">
-  <p><strong>SCAN ME</strong></p>
-</div>
+:root{--bg:#060a0d;--panel:#0d1715;--panel2:#111e1a;--line:#20372b;--text:#edf7ee;--muted:#8b9b91;--green:#b8ff32;--green2:#82cf18;--orange:#ffc266;--danger:#ff8177;} *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 15% 9%,#0d261a 0,transparent 27%),var(--bg);color:var(--text);font-family:Cairo,Arial,sans-serif}a{text-decoration:none;color:inherit}button,input,select,textarea{font:inherit}button{cursor:pointer}.container{width:min(1160px,calc(100% - 36px));margin:auto}.topbar{height:91px;border-bottom:1px solid rgba(108,155,117,.2);display:flex;align-items:center;justify-content:space-between;direction:ltr}.brand{display:flex;align-items:center;gap:11px;direction:ltr}.brand-mark{width:40px;height:40px;border-radius:8px;background:var(--green);display:grid;place-items:center;color:#09100a;font:bold 25px 'Space Grotesk'}.brand-name strong{display:block;font:700 20px 'Space Grotesk';letter-spacing:1px}.brand-name small{display:block;color:#7f8d84;font-size:8px;text-align:right}.nav{display:flex;align-items:center;gap:28px;direction:rtl;color:#829088;font-size:12px}.nav a:hover,.nav a.active{color:var(--green)}.whatsapp{border:1px solid #39582b;padding:11px 17px;border-radius:9px;color:var(--green);display:flex;align-items:center;gap:8px}.hero{min-height:580px;display:grid;grid-template-columns:1fr 1.2fr;align-items:center;gap:45px;padding:65px 0 35px;direction:ltr}.hero-art{height:330px;position:relative;border-radius:25px;background:linear-gradient(145deg,rgba(21,58,34,.27),rgba(4,9,11,.08));overflow:hidden}.hero-art:before,.hero-art:after{content:"";position:absolute;border-radius:50%;filter:blur(2px)}.hero-art:before{width:300px;height:300px;background:radial-gradient(circle,#8adb2a 0 2%,#254f21 4%,transparent 62%);left:12%;top:6%;opacity:.5}.hero-art:after{width:450px;height:180px;background:linear-gradient(90deg,transparent,#173a22,transparent);transform:rotate(-25deg);left:-5%;top:38%;opacity:.55}.satellite{position:absolute;left:31%;top:28%;width:112px;height:74px;border:4px solid #a9e12f;border-radius:13px;transform:rotate(-12deg);box-shadow:0 0 45px #8cce2b}.satellite:before,.satellite:after{content:"";position:absolute;width:66px;height:20px;border:3px solid #9bd931;top:22px;background:rgba(98,168,30,.12)}.satellite:before{right:104px}.satellite:after{left:104px}.antenna{position:absolute;width:3px;height:100px;background:#a7db41;left:53%;top:13%;transform:rotate(18deg);box-shadow:0 0 12px #9fdb32}.hero-copy{direction:rtl;text-align:right}.eyebrow{font-size:11px;color:var(--green);font-weight:700;margin-bottom:18px}.hero h1{font-size:clamp(45px,6vw,76px);line-height:1.15;letter-spacing:-3px;margin:0 0 21px}.hero h1 em{font-style:normal;color:var(--green)}.hero p{max-width:535px;color:#91a097;font-size:15px;line-height:2;margin:0 0 27px}.actions{display:flex;gap:12px;justify-content:flex-start}.btn{border-radius:10px;padding:14px 20px;border:1px solid #31442f;color:var(--text);font-size:12px;display:inline-flex;align-items:center;gap:8px}.btn.primary{background:var(--green);color:#0a1109;border-color:var(--green);font-weight:800;box-shadow:0 0 22px rgba(184,255,50,.14)}.btn.primary:hover{background:#d0ff75}.stats{display:flex;gap:48px;border-top:1px solid #1d3027;margin-top:58px;padding-top:25px;justify-content:flex-start}.stats b{font:700 26px 'Space Grotesk';display:block}.stats span{font-size:9px;color:#79887f}.section{padding:42px 0 88px}.section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:25px}.section-head h2{font-size:29px;margin:0}.green{color:var(--green)}.note{display:flex;align-items:center;gap:8px;color:var(--green);font-size:10px}.note small{display:block;color:#758178;margin-top:4px}.tools{display:flex;gap:12px;margin-bottom:13px}.search{flex:1;position:relative}.search input,.tools select,.admin input,.admin select,.admin textarea{width:100%;border:1px solid #264133;background:#0b1513;color:var(--text);border-radius:9px;padding:13px 15px;outline:0;font-size:12px}.search input{padding-right:43px}.search svg{position:absolute;right:14px;top:13px;color:#718279}.tools select{width:170px}.count{font-size:10px;color:#78877e;margin-bottom:10px}.count b{color:var(--green)}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.card{min-height:105px;background:linear-gradient(135deg,#0e1b17,#0b1214);border:1px solid #1d3027;border-radius:13px;padding:12px;display:flex;align-items:center;gap:12px;transition:.2s}.card:hover{border-color:#79af39;transform:translateY(-2px)}.pic{width:79px;height:79px;overflow:hidden;border-radius:10px;background:#16221e;flex-shrink:0}.pic img{width:100%;height:100%;object-fit:cover}.card-main{min-width:0;flex:1}.tag{color:var(--green);font-size:9px;font-weight:700;margin-bottom:4px}.card h3{font-size:14px;margin:0 0 4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.filename{direction:ltr;text-align:right;color:#78867e;font-size:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{display:flex;gap:12px;color:#6d7a72;font-size:8px;margin-top:6px}.download{background:var(--green);color:#091109;border-radius:7px;padding:10px 10px;font-size:9px;font-weight:800;white-space:nowrap}.help{border:1px solid #365124;background:linear-gradient(90deg,#142313,#101c14);border-radius:13px;padding:24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:70px}.help h2{font-size:18px;margin:0 0 6px}.help p{font-size:11px;color:#92a198;margin:0}.help .btn{background:var(--green);color:#0a1109;border:0;font-weight:800}.activation-hero{padding:72px 0 48px}.activation-hero h1{font-size:clamp(42px,6vw,70px);line-height:1.15;margin:0 0 16px}.activation-hero h1 em{color:var(--green);font-style:normal}.activation-hero p{max-width:590px;color:#92a198;line-height:2;font-size:14px}.activation-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.activation-card{display:flex;gap:14px;padding:12px;background:linear-gradient(135deg,#0d1b17,#0b1214);border:1px solid #20372b;border-radius:13px}.activation-card .pic{width:98px;height:122px}.activation-card h3{font-size:16px;margin:5px 0 12px}.activation-card p{font-size:11px;line-height:1.9;color:#a2b0a7;margin:0 0 10px}.activation-card p b{color:var(--green)}.support-link{color:var(--green);font-size:10px}.warning{display:flex;gap:12px;margin-top:25px;padding:18px;border:1px solid #684b20;background:rgba(117,76,22,.12);border-radius:10px;color:var(--orange);font-size:12px}.warning p{color:#a89b7f;font-size:10px;line-height:1.8;margin:4px 0 0}footer{border-top:1px solid #18251f;padding:24px 0 28px;color:#66746c;font-size:10px;display:flex;justify-content:space-between}.admin-page{padding:46px 0;min-height:700px}.admin-head{display:flex;justify-content:space-between;align-items:start;margin-bottom:22px}.admin-head h1{font-size:32px;margin:0}.admin-head p{color:#85948a;font-size:12px}.admin-layout{display:grid;grid-template-columns:400px 1fr;gap:18px;direction:ltr}.admin-box{direction:rtl;background:#0d1715;border:1px solid #20372b;border-radius:14px;padding:21px}.admin-box h2{font-size:18px;margin:0 0 18px}.admin label{display:block;color:#95a49a;font-size:11px;font-weight:700;margin:12px 0}.admin input,.admin select,.admin textarea{margin-top:6px}.admin textarea{min-height:75px;resize:vertical}.admin-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-save{width:100%;justify-content:center;border:0;margin-top:15px}.admin-list{display:grid;grid-template-columns:1fr 1fr;gap:9px}.admin-item{display:flex;align-items:center;gap:8px;padding:9px;border:1px solid #1c2c24;border-radius:9px;min-width:0}.admin-item img{width:42px;height:42px;object-fit:cover;border-radius:7px}.admin-item div{min-width:0;flex:1}.admin-item b,.admin-item small{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.admin-item b{font-size:11px}.admin-item small{color:#748279;font-size:8px;margin-top:3px}.admin-item button{border:0;background:none;color:var(--green);font-size:10px}.empty{text-align:center;color:#7e8c83;border:1px dashed #294333;padding:30px;border-radius:10px}.hidden{display:none!important} @media(max-width:800px){.container{width:min(100% - 28px,560px)}.topbar{height:72px}.nav{gap:10px}.nav a:not(.whatsapp){display:none}.whatsapp{padding:9px;font-size:0}.whatsapp:before{content:'واتساب';font-size:10px}.hero{display:block;padding-top:44px;min-height:auto}.hero-art{height:180px;margin-bottom:40px}.hero h1{font-size:48px;letter-spacing:-2px}.hero p{font-size:12px}.stats{gap:28px;margin-top:40px;margin-bottom:42px}.stats b{font-size:21px}.section-head{display:block}.section-head h2{font-size:24px;margin-bottom:15px}.tools{display:block}.tools select{width:100%;margin-top:8px}.grid,.activation-grid{grid-template-columns:1fr}.card{min-height:100px}.download{font-size:8px;padding:9px 7px}.help{display:block}.help .btn{margin-top:17px}.activation-hero{padding:48px 0 35px}.activation-hero h1{font-size:47px}.admin-layout{display:block}.admin-list{margin-top:16px;grid-template-columns:1fr}.admin-head h1{font-size:26px}footer{display:block;text-align:center;line-height:2.2}.pic{width:69px;height:69px}} 
 
-<div class="steps">
-  <div class="step">
-    <h3>1️⃣</h3>
-    <p>افتح كاميرا الهاتف</p>
-  </div>
-  <div class="step">
-    <h3>2️⃣</h3>
-    <p>امسح رمز QR</p>
-  </div>
-  <div class="step">
-    <h3>3️⃣</h3>
-    <p>يتم فتح صفحة الدعم</p>
-  </div>
-  <div class="step">
-    <h3>4️⃣</h3>
-    <p>أرسل مشكلتك وسيتم الرد</p>
-  </div>
-</div>
+S
 
-<div class="features">
-  <h2>مميزات الدعم الفني</h2>
-  <ul>
-    <li>⚡ رد سريع</li>
-    <li>🕒 متاح 24/7</li>
-    <li>📱 سهل الاستخدام</li>
-    <li>🔒 تواصل آمن</li>
-  </ul>
-</div>
+SUPPORTمركز تحميل السوفتات
 
-<a class="btn" href="#">تواصل الآن</a>
+السوفتاتالتفعيلات◌ الدعم الفني 
 
-  </div>  <footer>
-    © 2026 Technical Support | Powered by GitHub
-  </footer></body>
-</html>
+✦ تحديثات شهر يونيو 2026
+
+السوفت المناسب
+لجهازك في ثانية
+
+كل ملفات السوفت مرتبة باسم الجهاز، جاهزة للتحميل من مكان واحد وبشكل واضح.
+
+↓ تصفح السوفتات⌁ صفحة التفعيلات
+
+16ملف متاح
+
+2026آخر تحديث
+
+100%ترتيب واضح
+
+⌁ مكتبة السوفتات
+
+اختار جهازك وحمّل على طول
+
+◉ الملفات بصيغة BIN
+اتأكد من موديل جهازك قبل التحديث
+
+⌕
+
+الكل
+
+عرض 16 ملف
+
+مش عارف تختار السوفت؟
+
+ابعتلنا موديل جهازك، والدعم هيساعدك تختار الملف الصح.
+
+◌ كلمنا على واتساب 
+
+⌁ دليل التفعيلات
+
+🔥 التفعيلات المتاحة
+على جهازك
+
+جهازك ممكن يدعم مجموعة قوية من السيرفرات. اختار السيرفر اللي عايز تبدأ بيه وهتلاقي طريقة التفعيل قدامك.
+
+← رجوع للسوفتات
+
+◉ اختار السيرفر
+
+طرق التفعيل الشائعة
+
+13 تفعيل متاح
+
+⚠ 
+
+ملاحظة مهمة
+
+مش كل الأجهزة فيها كل السيرفرات، وده ممكن يختلف حسب إصدار السوفت. اتأكد من موديل جهازك قبل أي تفعيل، ولو محتار ابعتلنا على واتساب.
+
+لوحة التحكم
+
+إدارة المحتوى
+
+التعديلات محفوظة على نفس المتصفح وبتظهر فورًا في الموقع.
+
+× عنصر جديد
+
+إضافة عنصر جديد
+
+نوع المحتوىسوفت جهازتفعيل سيرفراسم الجهاز / السيرفر
+
+اسم الملفالحجم
+
+البراند / التصنيفرابط التحميل أو المساعدةطريقة التفعيلرابط صورة الموديل✓ حفظ التعديلات
+
+العناصر الحالية
+
+© 2026 SUPPORTكل ملفاتك في مكان واحد — وبطريقة سهلةدخول الإدارة 
+
+const folder='https://app.mediafire.com/folder/kms10tecwqo04', whatsapp='https://wa.me/message/2JZ4HHC5JOSFC1', image='https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80'; const seed=[ ['ACAS New Gold X3','ACAS-New_Gold_X3_2507L_1G_16M_SLC7_Internal_64594_rls6_20260519_165007.bin','9.07 MB','ACAS'],['ACAS New Gold X3','ACAS-New_Gold_X3_2507L_1G_16M_SLC7_Internal_65118_rls6_20260618_115648.bin','9.07 MB','ACAS'],['ACAS Cemex 2030','ACAS_Cemex_2030_2507L_1G_16M_SVC10_Internal_65056_rls6_20260615_144506.bin','9.07 MB','ACAS'],['ACAS Cemex 3030','ACAS_Cemex_3030_2507L_1G_8M_SVC11_Internal_65056_rls6_20260615_144157.bin','7.07 MB','ACAS'],['ACAS Cemex C500','ACAS_Cemex_C500_1506HV_512M_8M_SVC12_Internal_65056_rls6_20260615_143910.bin','6.45 MB','ACAS'],['GSP New Gold X3','GSP-New_Gold_X3_2507L_1G_16M_SLC7_Internal_65118_rls6_20260618_115251.bin','9.07 MB','GSP'],['GSP New Gold X5','GSP-New_Gold_X5_2507L_1G_8M_SLI4_NewGold_internal_65186_rls6_20260624_171816.bin','7.07 MB','GSP'],['GSP Xpress Ultra Max','GSP-Xpress_ultra_max_2517DA_SLI7_Xpress_2G_16M_65168_rls6_20260623_155025.bin','9.07 MB','GSP'],['GS Xpress X6 SuperMax','GS_Xpress_X6_SuperMax_2507L_1G_16M_SDF1_Internal_64987_rls6_20260612_172921.bin','9.07 MB','GS'],['Ipaudio Remax H2','Ipaudio_Remax_H2_1506HV_512_8M_SVR5_Internal_64639_rls6_20260521_164353.bin','6.45 MB','Ipaudio'],['NashareV2 Cemex 2020','NashareV2_Cemex_2020_2507L_1G_8M_SVK2_C_Internal_64856_rls6_20260604_101612.bin','7.07 MB','Nashare'],['New Gold X5 SLI2','New_Gold_X5_2507L_1G_8M_SLI2_internal_64579_rls6_20260519_112344.bin','7.07 MB','New Gold'],['New Gold X5 SLI4','New_Gold_X5_2507L_1G_8M_SLI4_NewGold_internal_65186_rls6_20260624_171421.bin','7.07 MB','New Gold'],['Remax H2','Remax_H2_1506HV_512_8M_SVR5_Internal_64639_rls6_20260521_164113.bin','6.45 MB','Remax'],['SMARTSAT 999 PROMAX','SMARTSAT_999_PROMAX_GOLD_Black_2507L_1G_16M_SLC9_YL2410_Internal_64987_rls6_20260612_164424.bin','9.07 MB','SMARTSAT'],['Xpress X6 SuperMax','Xpress_X6_SuperMax_2507L_1G_16M_SDF1_Internal_64987_rls6_20260612_172532.bin','9.07 MB','Xpress'] ].map((x,i)=>({id:i,name:x[0],filename:x[1],size:x[2],brand:x[3],url:folder,image})); const activationData=[['Nova','رقم 1 عشر مرات من الريموت'],['TOP 10','الزر الأحمر من الريموت'],['TREND','رقم 1 عشر مرات من الريموت'],['X','رقم 7 عدد 12 مرة من الريموت'],['Speed','رقم 1 عشر مرات من الريموت'],['Balance','رقم 1 عشر مرات من الريموت'],['MEGA','رقم 1 عشر مرات من الريموت'],['E.VISION','الزر الأحمر من الريموت'],['Bazooka','رقم 5 عشر مرات من الريموت'],['Nashare V2','الزر الأخضر من الريموت'],['NASHER','الزر الأخضر من الريموت'],['TREND SHER','الزر الأحمر من الريموت'],['Decamp','الزر الأحمر من الريموت']].map((x,i)=>({id:'a'+i,name:x[0],description:x[1],brand:'تفعيل',url:whatsapp,image})); let items=JSON.parse(localStorage.getItem('supportItems')||'null')||seed;let editing=null; function escapeHtml(s=''){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))} function renderSoftware(){const q=(document.getElementById('search')?.value||'').toLowerCase();const f=document.getElementById('brandFilter')?.value||'all';const list=items.filter(x=>(f==='all'||x.brand===f)&&(`${x.name} ${x.filename}`.toLowerCase().includes(q)));document.getElementById('resultCount').textContent=list.length;document.getElementById('fileCount').textContent=items.length;document.getElementById('softwareGrid').innerHTML=list.map(x=>`<article class="card"><div class="pic"><img src="${escapeHtml(x.image||image)}" alt="${escapeHtml(x.name)}"></div><div class="card-main"><div class="tag">${escapeHtml(x.brand)}</div><h3>${escapeHtml(x.name)}</h3><div class="filename">${escapeHtml(x.filename)}</div><div class="meta"><span>${escapeHtml(x.size)}</span><span>يونيو 2026</span></div></div><a class="download" href="${escapeHtml(x.url||folder)}" target="_blank">↓ رابط تحميل السوفت</a></article>`).join('')||'<div class="empty">مفيش ملف بالاسم ده، جرّب كلمة تانية.</div>'} function renderActivations(){document.getElementById('activationGrid').innerHTML=activationData.map(x=>`<article class="activation-card"><div class="pic"><img src="${x.image}" alt="${x.name}"></div><div><div class="tag">تفعيل السيرفر</div><h3>⭐ سيرفر ${x.name}</h3><p><b>التفعيل:</b> ${x.description}</p><a class="support-link" href="${whatsapp}" target="_blank">◌ محتاج مساعدة؟ كلم الدعم</a></div></article>`).join('')} function fillBrands(){const brands=[...new Set(items.map(x=>x.brand))];document.getElementById('brandFilter').innerHTML='<option value="all">الكل</option>'+brands.map(x=>`<option>${escapeHtml(x)}</option>`).join('')} function showPage(page){['homePage','activationPage','adminPage'].forEach(x=>document.getElementById(x).classList.add('hidden'));document.getElementById(page==='home'?'homePage':page==='activations'?'activationPage':'adminPage').classList.remove('hidden');if(page==='admin')renderAdmin();window.scrollTo({top:0,behavior:'smooth'})} function renderAdmin(){document.getElementById('adminList').innerHTML=items.map(x=>`<div class="admin-item"><img src="${escapeHtml(x.image||image)}"><div><b>${escapeHtml(x.name)}</b><small>${escapeHtml(x.filename||x.description||'')}</small></div><button onclick="editItem(${x.id})">تعديل</button><button style="color:var(--danger)" onclick="deleteItem(${x.id})">حذف</button></div>`).join('')} function saveItem(e){e.preventDefault();const x={id:editing??Date.now(),name:name.value,filename:filename.value,size:size.value,brand:brand.value,url:url.value,image:imageInput.value||image,description:description.value};if(editing===null)items.push(x);else items=items.map(i=>i.id===editing?x:i);localStorage.setItem('supportItems',JSON.stringify(items));resetAdmin();renderSoftware();renderAdmin();alert('تم حفظ التعديل بنجاح')} function editItem(id){const x=items.find(i=>i.id===id);if(!x)return;editing=id;formTitle.textContent='تعديل عنصر';name.value=x.name;filename.value=x.filename||'';size.value=x.size||'';brand.value=x.brand||'';url.value=x.url||folder;imageInput.value=x.image||'';description.value=x.description||'';showPage('admin')} function deleteItem(id){if(confirm('متأكد إنك عايز تحذف العنصر؟')){items=items.filter(x=>x.id!==id);localStorage.setItem('supportItems',JSON.stringify(items));renderAdmin();fillBrands();renderSoftware()}} function resetAdmin(){editing=null;document.querySelector('.admin form').reset();formTitle.textContent='إضافة عنصر جديد'} const imageInput=document.getElementById('image');fillBrands();renderSoftware();renderActivations(); 
