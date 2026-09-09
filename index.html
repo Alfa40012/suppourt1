@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#05090c">
+<meta name="color-scheme" content="dark">
 <title>SUPPORT | مركز السوفتات والتفعيلات</title>
 <meta name="description" content="مركز SUPPORT لتحميل سوفتات الأجهزة والتفعيلات مرتبة حسب الشركة والموديل">
 
@@ -12,10 +13,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 
 <style>
+
 :root{
   --bg:#05090c;
   --surface:#0c1414;
   --surface2:#111d19;
+  --surface3:#14231d;
   --line:#20372b;
   --line2:#2b4c36;
   --text:#eff8ef;
@@ -24,6 +27,7 @@
   --lime2:#8ad522;
   --gold:#ffc66d;
   --red:#ff8277;
+  --blue:#69b8ff;
   --shadow:0 18px 60px rgba(0,0,0,.28);
   --radius:16px;
   --max:1180px;
@@ -40,16 +44,26 @@ html{
 body{
   margin:0;
   background:
-    radial-gradient(800px 500px at 80% -10%,#16351f55,transparent 70%),
-    radial-gradient(500px 400px at 0 30%,#143b2050,transparent 70%),
+    radial-gradient(900px 550px at 85% -10%,#16351f55,transparent 70%),
+    radial-gradient(600px 500px at 0 30%,#143b2050,transparent 70%),
+    radial-gradient(500px 400px at 50% 100%,#0e301d35,transparent 70%),
     var(--bg);
   color:var(--text);
   font-family:Cairo,Arial,sans-serif;
   min-width:0;
 }
 
-body.admin-open{
-  overflow-x:hidden;
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.025;
+  background-image:
+    linear-gradient(#fff 1px,transparent 1px),
+    linear-gradient(90deg,#fff 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:linear-gradient(to bottom,#000,transparent 80%);
 }
 
 a{
@@ -77,6 +91,10 @@ img{
   margin:auto;
 }
 
+.hidden{
+  display:none!important;
+}
+
 /* =========================
    HEADER
 ========================= */
@@ -84,7 +102,7 @@ img{
 .site-header{
   border-bottom:1px solid #1a2b22;
   background:rgba(5,9,12,.92);
-  backdrop-filter:blur(14px);
+  backdrop-filter:blur(18px);
   position:relative;
   z-index:50;
 }
@@ -106,15 +124,19 @@ img{
 }
 
 .logo{
-  width:44px;
-  height:44px;
-  border-radius:11px;
-  background:var(--lime);
+  width:46px;
+  height:46px;
+  border-radius:13px;
+  background:
+    radial-gradient(circle at 30% 20%,#eaffb8,transparent 25%),
+    var(--lime);
   color:#091006;
   display:grid;
   place-items:center;
-  font:700 28px 'Space Grotesk';
-  box-shadow:0 0 24px #b9ff3830;
+  font:700 29px 'Space Grotesk';
+  box-shadow:
+    0 0 24px #b9ff3830,
+    inset 0 -7px 16px rgba(0,0,0,.08);
 }
 
 .brand-text b{
@@ -138,17 +160,21 @@ img{
   direction:rtl;
 }
 
-.header-support{
-  border:1px solid #426331;
-  color:var(--lime);
+.header-support,
+.admin-link{
   display:inline-flex;
   align-items:center;
   justify-content:center;
   gap:6px;
+  border-radius:10px;
   padding:10px 13px;
-  border-radius:9px;
   font-size:10px;
   transition:.2s;
+}
+
+.header-support{
+  border:1px solid #426331;
+  color:var(--lime);
 }
 
 .header-support:hover{
@@ -159,10 +185,6 @@ img{
 .admin-link{
   border:1px solid #2a3d31;
   color:#8b9991;
-  padding:10px 12px;
-  border-radius:9px;
-  font-size:10px;
-  transition:.2s;
 }
 
 .admin-link:hover{
@@ -181,7 +203,7 @@ img{
   border-top:1px solid #15251d;
   border-bottom:1px solid #1d3328;
   background:rgba(8,14,12,.96);
-  backdrop-filter:blur(16px);
+  backdrop-filter:blur(18px);
   box-shadow:0 8px 30px rgba(0,0,0,.16);
 }
 
@@ -205,7 +227,7 @@ img{
   flex:0 0 auto;
   padding:9px 15px;
   border:1px solid transparent;
-  border-radius:9px;
+  border-radius:10px;
   color:#8c9b92;
   font-size:10px;
   font-weight:700;
@@ -218,15 +240,12 @@ img{
   color:var(--lime);
   background:#b9ff380d;
   border-color:#314b32;
+  box-shadow:0 0 22px #b9ff3808;
 }
 
 /* =========================
    GENERAL
 ========================= */
-
-.hidden{
-  display:none!important;
-}
 
 .eyebrow{
   color:var(--lime);
@@ -237,7 +256,7 @@ img{
 
 .btn{
   border:1px solid #334a36;
-  border-radius:10px;
+  border-radius:11px;
   padding:12px 18px;
   display:inline-flex;
   align-items:center;
@@ -246,6 +265,7 @@ img{
   color:var(--text);
   font-size:11px;
   transition:.2s;
+  background:transparent;
 }
 
 .btn:hover{
@@ -258,6 +278,11 @@ img{
   border-color:var(--lime);
   color:#0a1107;
   font-weight:800;
+  box-shadow:0 8px 28px #b9ff3818;
+}
+
+.btn.primary:hover{
+  background:#caff62;
 }
 
 .btn.full{
@@ -328,8 +353,10 @@ img{
 
 .hero-visual{
   height:350px;
-  border-radius:26px;
-  background:linear-gradient(140deg,#12351f52,#0a13101a);
+  border-radius:27px;
+  background:
+    radial-gradient(circle at 50% 55%,#2d6e2d55,transparent 38%),
+    linear-gradient(140deg,#12351f52,#0a13101a);
   position:relative;
   overflow:hidden;
   border:1px solid #173326;
@@ -366,15 +393,25 @@ img{
   opacity:.25;
 }
 
+.hero-grid{
+  position:absolute;
+  inset:0;
+  opacity:.06;
+  background-image:
+    linear-gradient(#b9ff38 1px,transparent 1px),
+    linear-gradient(90deg,#b9ff38 1px,transparent 1px);
+  background-size:35px 35px;
+}
+
 .dish{
   position:absolute;
   z-index:2;
-  width:145px;
-  height:98px;
+  width:170px;
+  height:112px;
   border:5px solid var(--lime);
   border-radius:50%;
   left:28%;
-  top:32%;
+  top:31%;
   transform:rotate(-16deg);
   box-shadow:0 0 45px #b9ff385c;
 }
@@ -382,10 +419,10 @@ img{
 .dish:after{
   content:"";
   position:absolute;
-  width:145px;
+  width:170px;
   height:4px;
   background:var(--lime);
-  top:42px;
+  top:48px;
   left:0;
   transform:rotate(28deg);
 }
@@ -396,10 +433,36 @@ img{
   left:54%;
   top:16%;
   width:3px;
-  height:105px;
+  height:120px;
   background:var(--lime);
   transform:rotate(18deg);
   box-shadow:0 0 14px var(--lime);
+}
+
+.signal:after{
+  content:"";
+  position:absolute;
+  width:11px;
+  height:11px;
+  border-radius:50%;
+  background:var(--lime);
+  box-shadow:0 0 25px var(--lime);
+  bottom:-5px;
+  left:-4px;
+}
+
+.hero-label{
+  position:absolute;
+  z-index:5;
+  bottom:22px;
+  left:22px;
+  border:1px solid #45652f;
+  background:#06100bd9;
+  backdrop-filter:blur(10px);
+  color:var(--lime);
+  border-radius:10px;
+  padding:8px 11px;
+  font-size:9px;
 }
 
 .copy{
@@ -459,22 +522,34 @@ img{
 
 .category{
   position:relative;
-  min-height:150px;
+  min-height:155px;
   border:1px solid var(--line);
-  background:linear-gradient(145deg,#112019,#0a1111);
-  border-radius:14px;
+  background:
+    linear-gradient(145deg,#112019,#0a1111);
+  border-radius:15px;
   padding:17px;
   transition:.22s;
   overflow:hidden;
 }
 
+.category:before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-80px;
+  top:-80px;
+  border-radius:50%;
+  background:#b9ff3809;
+}
+
 .category:after{
   content:"";
   position:absolute;
-  width:100px;
-  height:100px;
+  width:110px;
+  height:110px;
   left:-30px;
-  bottom:-45px;
+  bottom:-48px;
   border-radius:50%;
   background:#b9ff3818;
 }
@@ -488,6 +563,7 @@ img{
 .cat-icon{
   font-size:22px;
   margin-bottom:20px;
+  color:var(--lime);
 }
 
 .category strong{
@@ -528,7 +604,7 @@ img{
   border:1px solid var(--line2);
   background:#0b1512;
   color:var(--text);
-  border-radius:10px;
+  border-radius:11px;
   padding:13px 15px;
   outline:0;
   font-size:11px;
@@ -569,46 +645,87 @@ img{
 .files{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:12px;
+  gap:13px;
 }
 
 .file{
   display:grid;
-  grid-template-columns:76px minmax(0,1fr) auto;
+  grid-template-columns:94px minmax(0,1fr) auto;
   align-items:center;
-  gap:13px;
-  min-height:103px;
+  gap:14px;
+  min-height:126px;
   padding:12px;
-  background:linear-gradient(140deg,#0d1b16,#0a1113);
+  background:
+    linear-gradient(140deg,#0d1b16,#0a1113);
   border:1px solid #1d3228;
-  border-radius:13px;
+  border-radius:15px;
   transition:.2s;
   min-width:0;
+  position:relative;
+  overflow:hidden;
+}
+
+.file:before{
+  content:"";
+  position:absolute;
+  width:180px;
+  height:180px;
+  right:-110px;
+  top:-120px;
+  border-radius:50%;
+  background:#b9ff3808;
 }
 
 .file:hover{
   border-color:#78a93d;
   transform:translateY(-2px);
+  box-shadow:0 12px 40px rgba(0,0,0,.18);
 }
 
-.thumb{
-  width:76px;
-  height:76px;
-  border-radius:9px;
-  background:#16251d;
+.device-image-slot{
+  width:94px;
+  height:94px;
+  border-radius:13px;
+  border:1px solid #2d4937;
+  background:
+    linear-gradient(145deg,#14261e,#09110f);
   overflow:hidden;
   flex:none;
+  position:relative;
+  display:grid;
+  place-items:center;
 }
 
-.thumb img{
+.device-image-slot:after{
+  content:"";
+  position:absolute;
+  inset:5px;
+  border:1px solid #b9ff3810;
+  border-radius:9px;
+  pointer-events:none;
+}
+
+.device-image-slot img{
   width:100%;
   height:100%;
-  object-fit:cover;
+  object-fit:contain;
   display:block;
+  padding:5px;
+  position:relative;
+  z-index:1;
+}
+
+.image-fallback{
+  color:#59705f;
+  font-size:26px;
+  position:absolute;
+  z-index:0;
 }
 
 .file-info{
   min-width:0;
+  position:relative;
+  z-index:2;
 }
 
 .badge{
@@ -620,8 +737,8 @@ img{
 }
 
 .file h3{
-  font-size:13px;
-  margin:0 0 3px;
+  font-size:14px;
+  margin:0 0 4px;
   white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -642,19 +759,31 @@ img{
   font-size:8px;
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
+  gap:9px;
   margin-top:7px;
+}
+
+.meta span{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+}
+
+.meta .download-stat{
+  color:#94a69b;
 }
 
 .download{
   background:var(--lime);
   color:#081006;
-  padding:10px 12px;
-  border-radius:8px;
+  padding:11px 13px;
+  border-radius:9px;
   font-size:9px;
   font-weight:800;
   white-space:nowrap;
   transition:.2s;
+  position:relative;
+  z-index:3;
 }
 
 .download:hover{
@@ -662,12 +791,32 @@ img{
   transform:scale(1.03);
 }
 
+.download:active{
+  transform:scale(.98);
+}
+
+.download small{
+  display:block;
+  font-size:7px;
+  opacity:.65;
+  margin-top:2px;
+}
+
+.hidden-file{
+  opacity:.55;
+}
+
+.hidden-file .download{
+  background:#39463a;
+  color:#d5ddd6;
+}
+
 .empty{
   grid-column:1/-1;
   padding:35px;
   text-align:center;
   border:1px dashed #34513b;
-  border-radius:10px;
+  border-radius:12px;
   color:#7d8d83;
   font-size:12px;
 }
@@ -678,10 +827,12 @@ img{
 
 .help{
   margin:0 0 65px;
-  padding:22px 25px;
+  padding:24px 25px;
   border:1px solid #45672b;
-  background:linear-gradient(90deg,#152414,#0e1812);
-  border-radius:13px;
+  background:
+    radial-gradient(circle at 10% 50%,#b9ff3810,transparent 35%),
+    linear-gradient(90deg,#152414,#0e1812);
+  border-radius:15px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -723,13 +874,23 @@ img{
   padding:12px;
   border:1px solid var(--line);
   background:linear-gradient(145deg,#0e1c17,#0a1113);
-  border-radius:12px;
+  border-radius:13px;
   min-width:0;
 }
 
 .activation .thumb{
   width:92px;
   height:112px;
+  border-radius:10px;
+  background:#16251d;
+  overflow:hidden;
+  flex:none;
+}
+
+.activation .thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
 .activation h3{
@@ -786,10 +947,12 @@ img{
 }
 
 .login-panel{
-  background:linear-gradient(145deg,#0d1715,#09100e);
+  background:
+    radial-gradient(circle at 50% 0,#b9ff380b,transparent 40%),
+    linear-gradient(145deg,#0d1715,#09100e);
   border:1px solid var(--line);
   border-radius:18px;
-  padding:26px;
+  padding:28px;
   box-shadow:var(--shadow);
 }
 
@@ -853,7 +1016,43 @@ img{
 }
 
 /* =========================
-   ADMIN PANEL
+   ADMIN TOP STATS
+========================= */
+
+.dashboard-stats{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+  margin-bottom:18px;
+}
+
+.dashboard-stat{
+  background:
+    linear-gradient(145deg,#0e1c17,#09110f);
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:15px;
+  min-width:0;
+}
+
+.dashboard-stat .icon{
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+.dashboard-stat b{
+  display:block;
+  font:700 23px 'Space Grotesk';
+  color:var(--lime);
+}
+
+.dashboard-stat span{
+  color:#77857d;
+  font-size:8px;
+}
+
+/* =========================
+   ADMIN
 ========================= */
 
 .admin-grid{
@@ -875,6 +1074,11 @@ img{
 .panel h2{
   font-size:18px;
   margin:0 0 18px;
+}
+
+.panel h3{
+  font-size:13px;
+  margin:22px 0 10px;
 }
 
 .panel label{
@@ -923,6 +1127,45 @@ img{
   margin-top:13px;
 }
 
+.file-upload{
+  border:1px dashed #38563f;
+  background:#0a1411;
+  border-radius:10px;
+  padding:13px;
+  text-align:center;
+  transition:.2s;
+}
+
+.file-upload:hover{
+  border-color:var(--lime);
+}
+
+.file-upload input{
+  border:0;
+  padding:0;
+  margin:8px 0 0;
+  background:transparent;
+}
+
+.image-preview{
+  width:105px;
+  height:105px;
+  margin:10px auto 4px;
+  border-radius:12px;
+  border:1px solid #2d4937;
+  background:#09110f;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+}
+
+.image-preview img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  padding:5px;
+}
+
 .admin-items{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
@@ -937,16 +1180,22 @@ img{
   align-items:center;
   gap:8px;
   border:1px solid #1d3027;
-  border-radius:9px;
+  border-radius:10px;
   padding:8px;
   min-width:0;
+  background:#09110f;
+}
+
+.admin-item.hidden-item{
+  opacity:.48;
 }
 
 .admin-item img{
-  width:42px;
-  height:42px;
-  border-radius:6px;
-  object-fit:cover;
+  width:48px;
+  height:48px;
+  border-radius:8px;
+  object-fit:contain;
+  background:#101d17;
   flex:none;
 }
 
@@ -972,6 +1221,12 @@ img{
   font-size:8px;
 }
 
+.admin-item .item-downloads{
+  color:var(--lime);
+  font-size:8px;
+  margin-top:3px;
+}
+
 .admin-item button{
   border:0;
   background:none;
@@ -980,8 +1235,55 @@ img{
   padding:4px;
 }
 
-.admin-item button:last-child{
+.admin-item button.delete{
   color:var(--red);
+}
+
+.admin-item button.toggle{
+  color:var(--blue);
+}
+
+.admin-toolbar{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.admin-toolbar input{
+  margin:0;
+}
+
+.admin-tools{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:8px;
+  margin-top:10px;
+}
+
+.admin-tools .btn{
+  font-size:9px;
+  padding:10px;
+}
+
+.analytics-status{
+  padding:10px 12px;
+  border-radius:9px;
+  font-size:9px;
+  margin-top:10px;
+  background:#b9ff3809;
+  border:1px solid #304b35;
+  color:#89988f;
+}
+
+.analytics-status.ok{
+  color:var(--lime);
+  border-color:#426331;
+}
+
+.analytics-status.warn{
+  color:var(--gold);
+  border-color:#5c4829;
 }
 
 .logout-btn{
@@ -990,13 +1292,55 @@ img{
   border-color:#482723;
 }
 
+.admin-message{
+  margin-top:10px;
+  min-height:18px;
+  color:var(--lime);
+  font-size:9px;
+  text-align:center;
+}
+
+.media-note{
+  color:#6f7f75;
+  font-size:8px;
+  line-height:1.8;
+  margin-top:7px;
+}
+
+.stats-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:9px;
+}
+
+.stats-table th,
+.stats-table td{
+  padding:9px 7px;
+  border-bottom:1px solid #1b2c24;
+  text-align:right;
+}
+
+.stats-table th{
+  color:#8b9b91;
+  font-weight:700;
+}
+
+.stats-table td{
+  color:#c4d0c8;
+}
+
+.stats-table td:last-child{
+  color:var(--lime);
+  font-weight:800;
+}
+
 /* =========================
    FOOTER
 ========================= */
 
 footer{
   border-top:1px solid #18261f;
-  padding:22px 0 27px;
+  padding:25px 0 29px;
   color:#68766e;
   display:flex;
   justify-content:space-between;
@@ -1013,8 +1357,41 @@ footer a:hover{
   color:var(--lime);
 }
 
+.footer-brand{
+  color:var(--lime);
+  font-weight:800;
+}
+
 /* =========================
-   RESPONSIVE — TABLET
+   TOAST
+========================= */
+
+.toast{
+  position:fixed;
+  z-index:9999;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%) translateY(20px);
+  background:#101c16;
+  border:1px solid #3c5b40;
+  color:var(--text);
+  padding:12px 17px;
+  border-radius:11px;
+  font-size:10px;
+  box-shadow:var(--shadow);
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  white-space:nowrap;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+/* =========================
+   RESPONSIVE TABLET
 ========================= */
 
 @media(max-width:1000px){
@@ -1039,10 +1416,14 @@ footer a:hover{
   .admin-items{
     max-height:none;
   }
+
+  .dashboard-stats{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
 }
 
 /* =========================
-   RESPONSIVE — MOBILE
+   RESPONSIVE MOBILE
 ========================= */
 
 @media(max-width:700px){
@@ -1117,6 +1498,21 @@ footer a:hover{
     order:2;
     width:100%;
     height:205px;
+  }
+
+  .dish{
+    width:135px;
+    height:90px;
+    left:27%;
+  }
+
+  .dish:after{
+    width:135px;
+    top:39px;
+  }
+
+  .signal{
+    height:90px;
   }
 
   .copy h1{
@@ -1209,15 +1605,16 @@ footer a:hover{
   }
 
   .file{
-    grid-template-columns:62px minmax(0,1fr) auto;
+    grid-template-columns:74px minmax(0,1fr) auto;
     gap:10px;
-    min-height:92px;
+    min-height:101px;
     padding:9px;
   }
 
-  .thumb{
-    width:62px;
-    height:62px;
+  .device-image-slot{
+    width:74px;
+    height:74px;
+    border-radius:11px;
   }
 
   .file h3{
@@ -1236,6 +1633,10 @@ footer a:hover{
   .download{
     padding:9px 8px;
     font-size:8px;
+  }
+
+  .download small{
+    font-size:6px;
   }
 
   .help{
@@ -1305,6 +1706,14 @@ footer a:hover{
     grid-template-columns:1fr 1fr;
   }
 
+  .dashboard-stats{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .admin-toolbar{
+    grid-template-columns:1fr;
+  }
+
   footer{
     display:block;
     text-align:center;
@@ -1344,7 +1753,12 @@ footer a:hover{
   }
 
   .file{
-    grid-template-columns:56px minmax(0,1fr);
+    grid-template-columns:62px minmax(0,1fr);
+  }
+
+  .device-image-slot{
+    width:62px;
+    height:62px;
   }
 
   .file .download{
@@ -1352,15 +1766,11 @@ footer a:hover{
     width:100%;
   }
 
-  .thumb{
-    width:56px;
-    height:56px;
-  }
-
   .stats{
     gap:8px;
   }
 }
+
 </style>
 </head>
 
@@ -1377,26 +1787,30 @@ footer a:hover{
   <div class="topbar">
 
     <a class="brand" href="#home" onclick="go('home')">
+
       <span class="logo">S</span>
 
       <span class="brand-text">
         <b>SUPPORT</b>
         <small>مركز السوفتات والتفعيلات</small>
       </span>
+
     </a>
 
     <div class="header-actions">
 
-      <a class="header-support"
-         href="https://wa.me/message/2JZ4HHC5JOSFC1"
-         target="_blank"
-         rel="noopener">
+      <a
+        class="header-support"
+        href="https://wa.me/message/2JZ4HHC5JOSFC1"
+        target="_blank"
+        rel="noopener">
         ◌ الدعم الفني
       </a>
 
-      <a class="admin-link"
-         href="#admin"
-         onclick="go('admin')">
+      <a
+        class="admin-link"
+        href="#admin"
+        onclick="go('admin')">
         🔐 الإدارة
       </a>
 
@@ -1406,6 +1820,7 @@ footer a:hover{
 
 </header>
 
+
 <!-- =========================
      COMPANY NAVIGATION
 ========================= -->
@@ -1414,51 +1829,58 @@ footer a:hover{
 
   <div class="company-scroll">
 
-    <a class="company-link active"
-       data-page="home"
-       href="#home"
-       onclick="go('home')">
+    <a
+      class="company-link active"
+      data-page="home"
+      href="#home"
+      onclick="go('home')">
       الرئيسية
     </a>
 
-    <a class="company-link"
-       data-page="cemex"
-       href="#cemex"
-       onclick="go('cemex')">
+    <a
+      class="company-link"
+      data-page="cemex"
+      href="#cemex"
+      onclick="go('cemex')">
       CEMEX
     </a>
 
-    <a class="company-link"
-       data-page="newgold"
-       href="#newgold"
-       onclick="go('newgold')">
+    <a
+      class="company-link"
+      data-page="newgold"
+      href="#newgold"
+      onclick="go('newgold')">
       NEWGOLD
     </a>
 
-    <a class="company-link"
-       data-page="sunplus"
-       href="#sunplus"
-       onclick="go('sunplus')">
+    <a
+      class="company-link"
+      data-page="sunplus"
+      href="#sunplus"
+      onclick="go('sunplus')">
       SUNPLUS
     </a>
 
-    <a class="company-link"
-       data-page="iptv"
-       href="#iptv"
-       onclick="go('iptv')">
+    <a
+      class="company-link"
+      data-page="iptv"
+      href="#iptv"
+      onclick="go('iptv')">
       IPTV
     </a>
 
-    <a class="company-link"
-       data-page="activations"
-       href="#activations"
-       onclick="go('activations')">
+    <a
+      class="company-link"
+      data-page="activations"
+      href="#activations"
+      onclick="go('activations')">
       ⚡ التفعيلات
     </a>
 
   </div>
 
 </nav>
+
 
 <!-- =========================
      HOME
@@ -1469,8 +1891,17 @@ footer a:hover{
   <section class="hero">
 
     <div class="hero-visual">
+
+      <div class="hero-grid"></div>
+
       <div class="signal"></div>
+
       <div class="dish"></div>
+
+      <div class="hero-label">
+        ● SUPPORT DOWNLOAD CENTER
+      </div>
+
     </div>
 
     <div class="copy">
@@ -1493,16 +1924,18 @@ footer a:hover{
 
       <div class="buttons">
 
-        <a class="btn primary"
-           href="#categories"
-           onclick="go('home')">
+        <a
+          class="btn primary"
+          href="#categories"
+          onclick="go('home')">
           ↓ تصفح التصنيفات
         </a>
 
-        <a class="btn"
-           href="https://wa.me/message/2JZ4HHC5JOSFC1"
-           target="_blank"
-           rel="noopener">
+        <a
+          class="btn"
+          href="https://wa.me/message/2JZ4HHC5JOSFC1"
+          target="_blank"
+          rel="noopener">
           ◌ كلم الدعم الفني
         </a>
 
@@ -1516,13 +1949,13 @@ footer a:hover{
         </div>
 
         <div>
-          <b>5</b>
-          <span>تصنيفات</span>
+          <b id="visitorHome">—</b>
+          <span>زائر</span>
         </div>
 
         <div>
-          <b>2026</b>
-          <span>آخر تحديث</span>
+          <b id="downloadHome">—</b>
+          <span>تحميل</span>
         </div>
 
       </div>
@@ -1532,18 +1965,28 @@ footer a:hover{
   </section>
 
 
+  <!-- =========================
+       CATEGORIES
+  ========================= -->
+
   <section class="section" id="categories">
 
     <div class="section-head">
 
       <div>
-        <div class="eyebrow">⌁ مكتبة السوفتات</div>
 
-        <h2>اختار شركة جهازك</h2>
+        <div class="eyebrow">
+          ⌁ مكتبة السوفتات
+        </div>
+
+        <h2>
+          اختار شركة جهازك
+        </h2>
 
         <p>
           كل شركة لها صفحة مستقلة وروابطها مرتبة بوضوح.
         </p>
+
       </div>
 
       <div class="eyebrow">
@@ -1555,73 +1998,126 @@ footer a:hover{
 
     <div class="library">
 
-      <a class="category"
-         href="#cemex"
-         onclick="go('cemex')">
+      <a
+        class="category"
+        href="#cemex"
+        onclick="go('cemex')">
 
         <div class="cat-icon">◈</div>
+
         <strong>CEMEX</strong>
-        <small>سوفتات أجهزة Cemex</small>
-        <span class="arrow">←</span>
+
+        <small>
+          سوفتات أجهزة Cemex
+        </small>
+
+        <span class="arrow">
+          ←
+        </span>
 
       </a>
 
 
-      <a class="category"
-         href="#newgold"
-         onclick="go('newgold')">
+      <a
+        class="category"
+        href="#newgold"
+        onclick="go('newgold')">
 
         <div class="cat-icon">◆</div>
+
         <strong>NEWGOLD</strong>
-        <small>سوفتات أجهزة New Gold</small>
-        <span class="arrow">←</span>
+
+        <small>
+          سوفتات أجهزة New Gold
+        </small>
+
+        <span class="arrow">
+          ←
+        </span>
 
       </a>
 
 
-      <a class="category"
-         href="#sunplus"
-         onclick="go('sunplus')">
+      <a
+        class="category"
+        href="#sunplus"
+        onclick="go('sunplus')">
 
         <div class="cat-icon">▣</div>
+
         <strong>SUNPLUS</strong>
-        <small>سوفتات معالج Sunplus</small>
-        <span class="arrow">←</span>
+
+        <small>
+          سوفتات معالج Sunplus
+        </small>
+
+        <span class="arrow">
+          ←
+        </span>
 
       </a>
 
 
-      <a class="category"
-         href="#iptv"
-         onclick="go('iptv')">
+      <a
+        class="category"
+        href="#iptv"
+        onclick="go('iptv')">
 
         <div class="cat-icon">▤</div>
+
         <strong>IPTV</strong>
-        <small>ملفات وخدمات IPTV</small>
-        <span class="arrow">←</span>
+
+        <small>
+          ملفات وخدمات IPTV
+        </small>
+
+        <span class="arrow">
+          ←
+        </span>
 
       </a>
 
 
-      <a class="category"
-         href="#activations"
-         onclick="go('activations')">
+      <a
+        class="category"
+        href="#activations"
+        onclick="go('activations')">
 
         <div class="cat-icon">⚡</div>
-        <strong>التفعيلات</strong>
-        <small>دليل تفعيل السيرفرات</small>
-        <span class="arrow">←</span>
+
+        <strong>
+          التفعيلات
+        </strong>
+
+        <small>
+          دليل تفعيل السيرفرات
+        </small>
+
+        <span class="arrow">
+          ←
+        </span>
 
       </a>
 
     </div>
 
 
+    <!-- =========================
+         SEARCH
+    ========================= -->
+
     <div class="section-head">
 
       <div>
-        <div class="eyebrow">⌕ بحث شامل</div>
-        <h2>كل الملفات</h2>
+
+        <div class="eyebrow">
+          ⌕ بحث شامل
+        </div>
+
+        <h2>
+          كل الملفات
+        </h2>
+
       </div>
 
     </div>
@@ -1641,13 +2137,29 @@ footer a:hover{
 
       </div>
 
-      <select id="filter" onchange="renderFiles()">
+      <select
+        id="filter"
+        onchange="renderFiles()">
 
-        <option value="all">كل الشركات</option>
-        <option value="CEMEX">CEMEX</option>
-        <option value="NEWGOLD">NEWGOLD</option>
-        <option value="SUNPLUS">SUNPLUS</option>
-        <option value="IPTV">IPTV</option>
+        <option value="all">
+          كل الشركات
+        </option>
+
+        <option value="CEMEX">
+          CEMEX
+        </option>
+
+        <option value="NEWGOLD">
+          NEWGOLD
+        </option>
+
+        <option value="SUNPLUS">
+          SUNPLUS
+        </option>
+
+        <option value="IPTV">
+          IPTV
+        </option>
 
       </select>
 
@@ -1659,26 +2171,38 @@ footer a:hover{
     </div>
 
 
-    <div class="files" id="files"></div>
+    <div
+      class="files"
+      id="files">
+    </div>
 
   </section>
 
 
+  <!-- =========================
+       HELP
+  ========================= -->
+
   <section class="help">
 
     <div>
-      <h2>مش عارف تختار الملف؟</h2>
+
+      <h2>
+        مش عارف تختار الملف؟
+      </h2>
 
       <p>
         ابعت موديل جهازك للدعم الفني،
         وهنقولك التصنيف والرابط الصح.
       </p>
+
     </div>
 
-    <a class="btn"
-       href="https://wa.me/message/2JZ4HHC5JOSFC1"
-       target="_blank"
-       rel="noopener">
+    <a
+      class="btn"
+      href="https://wa.me/message/2JZ4HHC5JOSFC1"
+      target="_blank"
+      rel="noopener">
       ◌ واتساب الدعم
     </a>
 
@@ -1691,11 +2215,15 @@ footer a:hover{
      CATEGORY PAGE
 ========================= -->
 
-<main id="categoryPage" class="hidden">
+<main
+  id="categoryPage"
+  class="hidden">
 
   <section class="page-title">
 
-    <div class="eyebrow" id="catEyebrow">
+    <div
+      class="eyebrow"
+      id="catEyebrow">
       ⌁ تصنيف الأجهزة
     </div>
 
@@ -1708,9 +2236,10 @@ footer a:hover{
       اضغط على الرابط للتحميل.
     </p>
 
-    <a class="btn"
-       href="#home"
-       onclick="go('home')">
+    <a
+      class="btn"
+      href="#home"
+      onclick="go('home')">
       → رجوع للرئيسية
     </a>
 
@@ -1723,7 +2252,10 @@ footer a:hover{
       ملفات تصنيف <b id="catCount">0</b>
     </div>
 
-    <div class="files" id="catFiles"></div>
+    <div
+      class="files"
+      id="catFiles">
+    </div>
 
   </section>
 
@@ -1731,17 +2263,22 @@ footer a:hover{
   <section class="help">
 
     <div>
-      <h2>عايز مساعدة في اختيار سوفت؟</h2>
+
+      <h2>
+        عايز مساعدة في اختيار سوفت؟
+      </h2>
 
       <p>
         ابعت صورة About أو اسم الموديل على واتساب.
       </p>
+
     </div>
 
-    <a class="btn"
-       href="https://wa.me/message/2JZ4HHC5JOSFC1"
-       target="_blank"
-       rel="noopener">
+    <a
+      class="btn"
+      href="https://wa.me/message/2JZ4HHC5JOSFC1"
+      target="_blank"
+      rel="noopener">
       ◌ كلم الدعم
     </a>
 
@@ -1754,7 +2291,9 @@ footer a:hover{
      ACTIVATIONS
 ========================= -->
 
-<main id="activationPage" class="hidden">
+<main
+  id="activationPage"
+  class="hidden">
 
   <section class="page-title">
 
@@ -1778,20 +2317,27 @@ footer a:hover{
 
   <section class="section">
 
-    <div class="activation-list" id="activationList"></div>
+    <div
+      class="activation-list"
+      id="activationList">
+    </div>
 
     <div class="notice">
 
       ⚠
 
       <div>
-        <b>ملاحظة مهمة</b>
+
+        <b>
+          ملاحظة مهمة
+        </b>
 
         <p>
           ليست كل الأجهزة تحتوي على جميع السيرفرات.
           اتأكد من موديل جهازك قبل التفعيل،
           ولو محتار كلم الدعم الفني.
         </p>
+
       </div>
 
     </div>
@@ -1805,13 +2351,19 @@ footer a:hover{
      ADMIN
 ========================= -->
 
-<main id="adminPage" class="hidden">
+<main
+  id="adminPage"
+  class="hidden">
 
   <section class="admin">
 
-    <!-- LOGIN -->
+    <!-- =========================
+         LOGIN
+    ========================= -->
 
-    <div id="adminLogin" class="admin-login">
+    <div
+      id="adminLogin"
+      class="admin-login">
 
       <div class="login-panel">
 
@@ -1819,7 +2371,9 @@ footer a:hover{
           🔐
         </div>
 
-        <h2>لوحة الإدارة</h2>
+        <h2>
+          لوحة الإدارة
+        </h2>
 
         <p>
           الدخول مخصص لإدارة ملفات SUPPORT
@@ -1828,6 +2382,7 @@ footer a:hover{
         <form onsubmit="adminLogin(event)">
 
           <label>
+
             كلمة المرور
 
             <input
@@ -1845,7 +2400,10 @@ footer a:hover{
             دخول الإدارة
           </button>
 
-          <div id="loginError" class="login-error"></div>
+          <div
+            id="loginError"
+            class="login-error">
+          </div>
 
         </form>
 
@@ -1854,23 +2412,29 @@ footer a:hover{
     </div>
 
 
-    <!-- DASHBOARD -->
+    <!-- =========================
+         DASHBOARD
+    ========================= -->
 
-    <div id="adminDashboard" class="hidden">
+    <div
+      id="adminDashboard"
+      class="hidden">
 
-      <div class="page-title" style="padding-top:0">
+      <div
+        class="page-title"
+        style="padding-top:0">
 
         <div class="eyebrow">
-          لوحة التحكم المحلية
+          لوحة التحكم
         </div>
 
         <h1>
-          إدارة <em>المحتوى</em>
+          إدارة <em>SUPPORT</em>
         </h1>
 
         <p>
-          تقدر تضيف أو تعدل اسم الجهاز والرابط والتصنيف.
-          الحفظ هنا على نفس المتصفح.
+          إدارة الملفات والصور والروابط والإحصائيات
+          والنسخ الاحتياطية من مكان واحد.
         </p>
 
         <button
@@ -1882,7 +2446,87 @@ footer a:hover{
       </div>
 
 
+      <!-- =========================
+           DASHBOARD STATS
+      ========================= -->
+
+      <div class="dashboard-stats">
+
+        <div class="dashboard-stat">
+
+          <div class="icon">
+            👥
+          </div>
+
+          <b id="adminVisitors">
+            —
+          </b>
+
+          <span>
+            إجمالي الزوار
+          </span>
+
+        </div>
+
+
+        <div class="dashboard-stat">
+
+          <div class="icon">
+            ↓
+          </div>
+
+          <b id="adminDownloads">
+            —
+          </b>
+
+          <span>
+            إجمالي التحميلات
+          </span>
+
+        </div>
+
+
+        <div class="dashboard-stat">
+
+          <div class="icon">
+            ▣
+          </div>
+
+          <b id="adminFilesCount">
+            0
+          </b>
+
+          <span>
+            الملفات
+          </span>
+
+        </div>
+
+
+        <div class="dashboard-stat">
+
+          <div class="icon">
+            ◈
+          </div>
+
+          <b id="adminVisibleCount">
+            0
+          </b>
+
+          <span>
+            ملفات ظاهرة
+          </span>
+
+        </div>
+
+      </div>
+
+
       <div class="admin-grid">
+
+        <!-- =========================
+             ADD / EDIT FORM
+        ========================= -->
 
         <form
           class="panel"
@@ -1894,19 +2538,34 @@ footer a:hover{
 
 
           <label>
+
             التصنيف
 
             <select id="fCat">
-              <option>CEMEX</option>
-              <option>NEWGOLD</option>
-              <option>SUNPLUS</option>
-              <option>IPTV</option>
+
+              <option>
+                CEMEX
+              </option>
+
+              <option>
+                NEWGOLD
+              </option>
+
+              <option>
+                SUNPLUS
+              </option>
+
+              <option>
+                IPTV
+              </option>
+
             </select>
 
           </label>
 
 
           <label>
+
             اسم الجهاز
 
             <input
@@ -1920,38 +2579,49 @@ footer a:hover{
           <div class="row">
 
             <label>
+
               اسم الملف
 
               <input
                 id="fFile"
                 placeholder="firmware.bin">
+
             </label>
 
 
             <label>
+
               الحجم
 
               <input
                 id="fSize"
                 placeholder="9.07 MB">
+
             </label>
 
           </div>
 
 
           <label>
-            رابط التحميل
+
+            رابط التحميل — MediaFire
 
             <input
               id="fUrl"
               type="url"
               required
-              placeholder="https://...">
+              placeholder="https://www.mediafire.com/file/...">
 
           </label>
 
+          <div class="media-note">
+            الأفضل وضع رابط ملف MediaFire نفسه لكل جهاز
+            بدل رابط المجلد، حتى يصبح عداد التحميل لكل ملف مستقل.
+          </div>
+
 
           <label>
+
             رابط صورة الجهاز
 
             <input
@@ -1960,6 +2630,34 @@ footer a:hover{
               placeholder="https://...jpg">
 
           </label>
+
+
+          <div class="file-upload">
+
+            <div>
+              🖼️ رفع صورة من الهاتف
+            </div>
+
+            <small style="color:#6f8075;font-size:8px">
+              سيتم تصغير وضغط الصورة تلقائيًا
+            </small>
+
+            <input
+              id="fImageFile"
+              type="file"
+              accept="image/*"
+              onchange="previewUploadedImage(event)">
+
+            <div class="image-preview">
+
+              <img
+                id="imagePreview"
+                src=""
+                alt="معاينة الصورة">
+
+            </div>
+
+          </div>
 
 
           <button
@@ -1972,19 +2670,53 @@ footer a:hover{
           <button
             class="btn full"
             type="button"
-            onclick="reset()"
+            onclick="resetForm()"
             style="margin-top:8px">
             إلغاء / تفريغ
           </button>
 
+          <div
+            id="adminMessage"
+            class="admin-message">
+          </div>
+
         </form>
 
+
+        <!-- =========================
+             FILE MANAGEMENT
+        ========================= -->
 
         <div class="panel">
 
           <h2>
             الملفات الحالية
           </h2>
+
+
+          <div class="admin-toolbar">
+
+            <input
+              id="adminSearch"
+              oninput="renderAdmin()"
+              placeholder="بحث في الملفات...">
+
+            <button
+              class="btn"
+              type="button"
+              onclick="refreshAnalytics()">
+              ↻ تحديث
+            </button>
+
+          </div>
+
+
+          <div
+            id="analyticsStatus"
+            class="analytics-status">
+            نظام الإحصائيات المحلي يعمل.
+          </div>
+
 
           <div
             class="admin-items"
@@ -1994,6 +2726,121 @@ footer a:hover{
         </div>
 
       </div>
+
+
+      <!-- =========================
+           SETTINGS
+      ========================= -->
+
+      <section
+        class="section"
+        style="padding-bottom:20px">
+
+        <div class="panel">
+
+          <h2>
+            ⚙️ إعدادات الإدارة
+          </h2>
+
+          <div class="row">
+
+            <label>
+
+              رابط واتساب
+
+              <input
+                id="settingWa"
+                type="url"
+                placeholder="https://wa.me/...">
+
+            </label>
+
+
+            <label>
+
+              رابط MediaFire الافتراضي
+
+              <input
+                id="settingFolder"
+                type="url"
+                placeholder="https://www.mediafire.com/...">
+
+            </label>
+
+          </div>
+
+
+          <label>
+
+            رسالة الدعم أسفل الموقع
+
+            <textarea
+              id="settingHelp"
+              placeholder="مش عارف تختار الملف؟ ابعت موديل جهازك للدعم الفني..."></textarea>
+
+          </label>
+
+
+          <button
+            class="btn primary"
+            type="button"
+            onclick="saveSettings()">
+            ✓ حفظ إعدادات الموقع
+          </button>
+
+
+          <h3>
+            📊 الإحصائيات
+          </h3>
+
+          <div
+            id="analyticsDetails">
+          </div>
+
+
+          <div class="admin-tools">
+
+            <button
+              class="btn"
+              type="button"
+              onclick="exportBackup()">
+              ⬇ نسخة احتياطية
+            </button>
+
+            <button
+              class="btn"
+              type="button"
+              onclick="document.getElementById('importFile').click()">
+              ⬆ استرجاع نسخة
+            </button>
+
+            <button
+              class="btn"
+              type="button"
+              onclick="resetLocalStats()">
+              ↺ تصفير إحصائيات الجهاز
+            </button>
+
+            <button
+              class="btn"
+              type="button"
+              onclick="resetForm()">
+              ＋ إضافة ملف جديد
+            </button>
+
+          </div>
+
+
+          <input
+            id="importFile"
+            type="file"
+            accept=".json,application/json"
+            class="hidden"
+            onchange="importBackup(event)">
+
+        </div>
+
+      </section>
 
     </div>
 
@@ -2008,10 +2855,16 @@ footer a:hover{
 
 <footer>
 
-  <span>© 2026 SUPPORT</span>
+  <span>
+    © 2026 SUPPORT
+  </span>
 
   <span>
     مركز السوفتات والتفعيلات
+  </span>
+
+  <span class="footer-brand">
+    مصمم بواسطة SUPPORT TREND
   </span>
 
   <a
@@ -2025,30 +2878,106 @@ footer a:hover{
 </div>
 
 
+<!-- TOAST -->
+
+<div
+  id="toast"
+  class="toast">
+</div>
+
+
 <script>
 
-/* =========================================
+/* =========================================================
+   SUPPORT TREND
+   MASTER CONFIG
+========================================================= */
+
+/*
+  ملاحظة مهمة جدًا:
+
+  لو عايز العداد يكون عالميًا بين جميع الزوار،
+  وليس مجرد عداد على نفس الجهاز، فعّل CounterAPI
+  وضع بيانات Workspace وAccess Token.
+
+  مثال:
+
+  enabled: true,
+  workspace: "support-trend",
+  accessToken: "YOUR_ACCESS_TOKEN"
+
+  لا تضع Access Token حساس بصلاحيات واسعة في الواجهة
+  إذا كان الموقع عامًا. الأفضل للإنتاج استخدام Backend/Proxy.
+
+  لو تركت enabled = false
+  سيعمل النظام تلقائيًا بنظام LocalStorage.
+*/
+
+const ANALYTICS = {
+
+  enabled:false,
+
+  workspace:'PUT_WORKSPACE_HERE',
+
+  accessToken:'PUT_ACCESS_TOKEN_HERE',
+
+  base:'https://api.counterapi.dev/v2'
+
+};
+
+
+/* =========================================================
    SETTINGS
-========================================= */
+========================================================= */
 
-const folder =
-  'https://app.mediafire.com/folder/kms10tecwqo04';
+const DEFAULT_SETTINGS = {
 
-const wa =
-  'https://wa.me/message/2JZ4HHC5JOSFC1';
+  folder:
+    'https://app.mediafire.com/folder/kms10tecwqo04',
+
+  wa:
+    'https://wa.me/message/2JZ4HHC5JOSFC1',
+
+  help:
+    'مش عارف تختار الملف؟ ابعت موديل جهازك للدعم الفني، وهنقولك التصنيف والرابط الصح.'
+
+};
+
 
 const pic =
   'https://images.unsplash.com/photo-1593784991095-a205069470b6?auto=format&fit=crop&w=700&q=80';
 
+
 /*
   كلمة مرور الإدارة
 */
-const ADMIN_PASSWORD = 'admin2027';
+const ADMIN_PASSWORD =
+  'admin2027';
 
 
-/* =========================================
+/* =========================================================
+   LOAD SETTINGS
+========================================================= */
+
+let settings =
+  JSON.parse(
+    localStorage.getItem('supportSettings') || 'null'
+  ) || {
+    ...DEFAULT_SETTINGS
+  };
+
+
+let folder =
+  settings.folder || DEFAULT_SETTINGS.folder;
+
+
+let wa =
+  settings.wa || DEFAULT_SETTINGS.wa;
+
+
+/* =========================================================
    SOURCE FILES
-========================================= */
+========================================================= */
 
 const source = [
 
@@ -2166,54 +3095,119 @@ const source = [
 
 ].map((x,i)=>({
 
-  id:i,
+  id:i + 1,
+
   cat:x[0],
+
   name:x[1],
+
   file:x[2],
+
   size:x[3],
+
   url:folder,
-  image:pic
+
+  image:pic,
+
+  visible:true,
+
+  downloads:0
 
 }));
 
 
-/* =========================================
+/* =========================================================
    ACTIVATIONS
-========================================= */
+========================================================= */
 
 const activations = [
 
   ['Nova','رقم 1 عشر مرات من الريموت'],
+
   ['TOP 10','الزر الأحمر من الريموت'],
+
   ['TREND','رقم 1 عشر مرات من الريموت'],
+
   ['X','رقم 7 عدد 12 مرة من الريموت'],
+
   ['Speed','رقم 1 عشر مرات من الريموت'],
+
   ['Balance','رقم 1 عشر مرات من الريموت'],
+
   ['MEGA','رقم 1 عشر مرات من الريموت'],
+
   ['E.VISION','الزر الأحمر من الريموت'],
+
   ['Bazooka','رقم 5 عشر مرات من الريموت'],
+
   ['Nashare V2','الزر الأخضر من الريموت'],
+
   ['NASHER','الزر الأخضر من الريموت'],
+
   ['TREND SHER','الزر الأحمر من الريموت'],
+
   ['Decamp','الزر الأحمر من الريموت']
 
 ];
 
 
-/* =========================================
+/* =========================================================
    DATA
-========================================= */
+========================================================= */
 
 let files =
-  JSON.parse(localStorage.getItem('supportCatalog') || 'null')
-  || source;
+  JSON.parse(
+    localStorage.getItem('supportCatalog') || 'null'
+  ) || source;
+
+
+/*
+  ترقية البيانات القديمة لو كانت موجودة
+*/
+
+files =
+  files.map((x,i)=>({
+
+    id:
+      x.id ?? i + 1,
+
+    cat:
+      x.cat || 'IPTV',
+
+    name:
+      x.name || 'ملف بدون اسم',
+
+    file:
+      x.file || '',
+
+    size:
+      x.size || '',
+
+    url:
+      x.url || folder,
+
+    image:
+      x.image || pic,
+
+    visible:
+      x.visible !== false,
+
+    downloads:
+      Number(x.downloads || 0)
+
+  }));
+
 
 let editId = null;
 
+let uploadedImageData = '';
 
-/* =========================================
+let remoteStatsCache = {};
+
+
+/* =========================================================
    HELPERS
-========================================= */
+========================================================= */
 
 const $ = id =>
   document.getElementById(id);
@@ -2235,23 +3229,580 @@ function safe(v=''){
 }
 
 
-/* =========================================
+function formatNumber(n){
+
+  return Number(n || 0).toLocaleString('en-US');
+
+}
+
+
+function slugify(value){
+
+  return String(value || '')
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\u0600-\u06FF]+/g,'-')
+    .replace(/^-+|-+$/g,'')
+    .slice(0,80);
+
+}
+
+
+function itemKey(x){
+
+  const base =
+    `${x.cat}-${x.name}-${x.file}-${x.id}`;
+
+  return slugify(base) || `item-${x.id}`;
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer = null;
+
+function toast(message){
+
+  const el = $('toast');
+
+  if(!el){
+    return;
+  }
+
+  el.textContent = message;
+
+  el.classList.add('show');
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(
+      ()=>el.classList.remove('show'),
+      2600
+    );
+
+}
+
+
+/* =========================================================
+   LOCAL STATS
+========================================================= */
+
+const LOCAL_STATS_KEY =
+  'supportStatsV3';
+
+
+function getLocalStats(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(LOCAL_STATS_KEY)
+      || '{"visitors":0,"downloads":0,"items":{}}'
+    );
+
+  }
+  catch(e){
+
+    return {
+      visitors:0,
+      downloads:0,
+      items:{}
+    };
+
+  }
+
+}
+
+
+function saveLocalStats(stats){
+
+  localStorage.setItem(
+    LOCAL_STATS_KEY,
+    JSON.stringify(stats)
+  );
+
+}
+
+
+function localIncrement(key){
+
+  const stats =
+    getLocalStats();
+
+  if(key === 'visitors'){
+
+    stats.visitors =
+      Number(stats.visitors || 0) + 1;
+
+  }
+
+  else if(key === 'downloads'){
+
+    stats.downloads =
+      Number(stats.downloads || 0) + 1;
+
+  }
+
+  else{
+
+    stats.items[key] =
+      Number(stats.items[key] || 0) + 1;
+
+  }
+
+  saveLocalStats(stats);
+
+  return stats;
+
+}
+
+
+function getLocalItemCount(key){
+
+  const stats =
+    getLocalStats();
+
+  return Number(
+    stats.items?.[key] || 0
+  );
+
+}
+
+
+/* =========================================================
+   COUNTER API V2
+========================================================= */
+
+function analyticsConfigured(){
+
+  return !!(
+    ANALYTICS.enabled &&
+    ANALYTICS.workspace &&
+    ANALYTICS.accessToken &&
+    ANALYTICS.workspace !== 'PUT_WORKSPACE_HERE' &&
+    ANALYTICS.accessToken !== 'PUT_ACCESS_TOKEN_HERE'
+  );
+
+}
+
+
+async function counterRequest(name,action=''){
+
+  if(!analyticsConfigured()){
+
+    return null;
+
+  }
+
+
+  const safeName =
+    encodeURIComponent(
+      String(name)
+        .replace(/[^a-zA-Z0-9_-]/g,'-')
+        .slice(0,100)
+    );
+
+
+  const url =
+    `${ANALYTICS.base}/` +
+    `${encodeURIComponent(ANALYTICS.workspace)}/` +
+    `${safeName}` +
+    (action ? `/${action}` : '');
+
+
+  try{
+
+    const response =
+      await fetch(url,{
+        method:'GET',
+        headers:{
+          'Authorization':
+            `Bearer ${ANALYTICS.accessToken}`
+        },
+        cache:'no-store'
+      });
+
+
+    if(!response.ok){
+
+      throw new Error(
+        `HTTP ${response.status}`
+      );
+
+    }
+
+
+    const data =
+      await response.json();
+
+
+    return data;
+
+  }
+  catch(error){
+
+    console.warn(
+      'Analytics error:',
+      error
+    );
+
+    return null;
+
+  }
+
+}
+
+
+/* =========================================================
+   COUNTER NAME
+========================================================= */
+
+function counterName(type,item){
+
+  if(type === 'visitor'){
+    return 'visitors';
+  }
+
+  if(type === 'downloads'){
+    return 'downloads-total';
+  }
+
+  return `download-${itemKey(item)}`;
+
+}
+
+
+/* =========================================================
+   REMOTE GET COUNT
+========================================================= */
+
+async function getRemoteCount(name){
+
+  const result =
+    await counterRequest(name,'');
+
+
+  if(!result){
+    return null;
+  }
+
+
+  const value =
+    result?.data?.up_count;
+
+
+  if(typeof value === 'number'){
+
+    return value;
+
+  }
+
+
+  return null;
+
+}
+
+
+/* =========================================================
+   VISITOR TRACKING
+========================================================= */
+
+async function trackVisitor(){
+
+  /*
+    زائر واحد كل 24 ساعة على نفس الجهاز.
+    في حالة CounterAPI سيصبح الرقم عالميًا
+    بين الزوار بعد ضبط الخدمة.
+  */
+
+  const key =
+    'supportVisitorDay';
+
+  const today =
+    new Date().toISOString().slice(0,10);
+
+  const previous =
+    localStorage.getItem(key);
+
+
+  if(previous === today){
+
+    updateHomeStats();
+
+    return;
+
+  }
+
+
+  localStorage.setItem(
+    key,
+    today
+  );
+
+
+  const local =
+    localIncrement('visitors');
+
+
+  $('visitorHome').textContent =
+    formatNumber(local.visitors);
+
+
+  if(analyticsConfigured()){
+
+    const result =
+      await counterRequest(
+        counterName('visitor'),
+        'up'
+      );
+
+
+    const count =
+      result?.data?.up_count;
+
+
+    if(typeof count === 'number'){
+
+      remoteStatsCache.visitors =
+        count;
+
+      $('visitorHome').textContent =
+        formatNumber(count);
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
+   DOWNLOAD TRACKING
+========================================================= */
+
+function trackDownload(event,id,url){
+
+  /*
+    نفتح الرابط فورًا حتى لا يمنع المتصفح
+    نافذة MediaFire بسبب await.
+  */
+
+  event.preventDefault();
+
+  window.open(
+    url,
+    '_blank',
+    'noopener,noreferrer'
+  );
+
+
+  const item =
+    files.find(
+      x => Number(x.id) === Number(id)
+    );
+
+
+  if(!item){
+    return false;
+  }
+
+
+  const key =
+    itemKey(item);
+
+
+  /*
+    Local counter
+  */
+
+  const local =
+    localIncrement(key);
+
+
+  localIncrement('downloads');
+
+
+  /*
+    تحديث عداد البطاقة فورًا
+  */
+
+  const elements =
+    document.querySelectorAll(
+      `.download-count[data-id="${CSS.escape(String(id))}"]`
+    );
+
+
+  elements.forEach(el=>{
+
+    el.textContent =
+      formatNumber(local.items[key]);
+
+  });
+
+
+  /*
+    Remote counter
+  */
+
+  if(analyticsConfigured()){
+
+    counterRequest(
+      counterName('downloads',item),
+      'up'
+    );
+
+    counterRequest(
+      counterName('downloads'),
+      'up'
+    );
+
+  }
+
+
+  toast(
+    `تم فتح رابط ${item.name}`
+  );
+
+
+  return false;
+
+}
+
+
+/* =========================================================
+   REFRESH HOME STATS
+========================================================= */
+
+async function updateHomeStats(){
+
+  const local =
+    getLocalStats();
+
+
+  $('visitorHome').textContent =
+    formatNumber(
+      remoteStatsCache.visitors ??
+      local.visitors
+    );
+
+
+  $('downloadHome').textContent =
+    formatNumber(
+      remoteStatsCache.downloads ??
+      local.downloads
+    );
+
+
+  $('total').textContent =
+    files.length;
+
+}
+
+
+/* =========================================================
+   LOAD REMOTE HOME STATS
+========================================================= */
+
+async function loadRemoteHomeStats(){
+
+  if(!analyticsConfigured()){
+
+    updateHomeStats();
+
+    return;
+
+  }
+
+
+  const visitors =
+    await getRemoteCount(
+      counterName('visitor')
+    );
+
+
+  const downloads =
+    await getRemoteCount(
+      counterName('downloads')
+    );
+
+
+  if(visitors !== null){
+
+    remoteStatsCache.visitors =
+      visitors;
+
+  }
+
+
+  if(downloads !== null){
+
+    remoteStatsCache.downloads =
+      downloads;
+
+  }
+
+
+  updateHomeStats();
+
+}
+
+
+/* =========================================================
    FILE CARD
-========================================= */
+========================================================= */
 
 function card(x){
 
+  if(x.visible === false){
+
+    return '';
+
+  }
+
+
+  const key =
+    itemKey(x);
+
+
+  const localDownloads =
+    getLocalItemCount(key);
+
+
+  const remoteDownloads =
+    remoteStatsCache[key];
+
+
+  const downloadCount =
+    remoteDownloads ??
+    localDownloads ??
+    Number(x.downloads || 0);
+
+
+  const image =
+    x.image || pic;
+
+
   return `
 
-  <article class="file">
+  <article
+    class="file"
+    data-file-id="${Number(x.id)}">
 
-    <div class="thumb">
+    <div class="device-image-slot">
+
+      <span class="image-fallback">
+        ◈
+      </span>
 
       <img
-        src="${safe(x.image || pic)}"
+        src="${safe(image)}"
         alt="${safe(x.name)}"
         loading="lazy"
-        onerror="this.src='${pic}'">
+        onerror="this.style.display='none'">
 
     </div>
 
@@ -2273,11 +3824,17 @@ function card(x){
       <div class="meta">
 
         <span>
-          ${safe(x.size || '')}
+          ${safe(x.size || 'الحجم غير محدد')}
         </span>
 
-        <span>
-          جاهز للتحميل
+        <span class="download-stat">
+          ↓
+          <b
+            class="download-count"
+            data-id="${Number(x.id)}">
+            ${formatNumber(downloadCount)}
+          </b>
+          تحميل
         </span>
 
       </div>
@@ -2289,9 +3846,14 @@ function card(x){
       class="download"
       href="${safe(x.url || folder)}"
       target="_blank"
-      rel="noopener">
+      rel="noopener"
+      onclick="trackDownload(event,${Number(x.id)},'${safe(x.url || folder)}')">
 
       ↓ تحميل
+
+      <small>
+        MediaFire
+      </small>
 
     </a>
 
@@ -2302,26 +3864,34 @@ function card(x){
 }
 
 
-/* =========================================
+/* =========================================================
    RENDER FILES
-========================================= */
+========================================================= */
 
 function renderFiles(){
 
   const q =
-    ($('search')?.value || '').toLowerCase().trim();
+    ($('search')?.value || '')
+      .toLowerCase()
+      .trim();
+
 
   const f =
     $('filter')?.value || 'all';
 
+
   const list =
     files.filter(x =>
+
+      x.visible !== false &&
 
       (f === 'all' || x.cat === f)
 
       &&
 
-      (`${x.name} ${x.file}`.toLowerCase().includes(q))
+      (`${x.name} ${x.file} ${x.cat}`)
+        .toLowerCase()
+        .includes(q)
 
     );
 
@@ -2337,30 +3907,87 @@ function renderFiles(){
   $('shown').textContent =
     list.length;
 
+
   $('total').textContent =
-    files.length;
+    files.filter(x=>x.visible !== false).length;
+
+
+  /*
+    تحميل الإحصائيات الخاصة بالملفات
+  */
+
+  if(analyticsConfigured()){
+
+    loadVisibleFileStats(list);
+
+  }
 
 }
 
 
-/* =========================================
+/* =========================================================
+   LOAD FILE STATS
+========================================================= */
+
+async function loadVisibleFileStats(list){
+
+  for(const item of list){
+
+    const key =
+      itemKey(item);
+
+
+    const count =
+      await getRemoteCount(
+        counterName('downloads',item)
+      );
+
+
+    if(count !== null){
+
+      remoteStatsCache[key] =
+        count;
+
+
+      document
+        .querySelectorAll(
+          `.download-count[data-id="${CSS.escape(String(item.id))}"]`
+        )
+        .forEach(el=>{
+          el.textContent =
+            formatNumber(count);
+        });
+
+    }
+
+  }
+
+}
+
+
+/* =========================================================
    CATEGORY
-========================================= */
+========================================================= */
 
 function renderCategory(cat){
 
   $('catTitle').innerHTML =
     `${safe(cat)} <em>سوفتات</em>`;
 
+
   $('catEyebrow').textContent =
     `⌁ تصنيف ${cat}`;
+
 
   $('catDesc').textContent =
     `كل ملفات ${cat} مرتبة باسم الموديل والحجم. اختار الملف واضغط تحميل.`;
 
 
   const list =
-    files.filter(x => x.cat === cat);
+    files.filter(x =>
+      x.cat === cat &&
+      x.visible !== false
+    );
 
 
   $('catCount').textContent =
@@ -2374,16 +4001,24 @@ function renderCategory(cat){
 
     '<div class="empty">لا توجد ملفات في التصنيف حاليًا.</div>';
 
+
+  if(analyticsConfigured()){
+
+    loadVisibleFileStats(list);
+
+  }
+
 }
 
 
-/* =========================================
+/* =========================================================
    ACTIVATIONS
-========================================= */
+========================================================= */
 
 function renderActs(){
 
   $('activationList').innerHTML =
+
     activations.map((x,i)=>`
 
       <article class="activation">
@@ -2430,15 +4065,15 @@ function renderActs(){
 }
 
 
-/* =========================================
+/* =========================================================
    NAVIGATION
-========================================= */
+========================================================= */
 
 function updateNav(page){
 
   document
     .querySelectorAll('.company-link')
-    .forEach(link => {
+    .forEach(link=>{
 
       link.classList.toggle(
         'active',
@@ -2457,7 +4092,7 @@ function go(page){
     'categoryPage',
     'activationPage',
     'adminPage'
-  ].forEach(x => {
+  ].forEach(x=>{
 
     $(x).classList.add('hidden');
 
@@ -2466,21 +4101,30 @@ function go(page){
 
   if(page === 'home'){
 
-    $('homePage').classList.remove('hidden');
+    $('homePage')
+      .classList
+      .remove('hidden');
 
   }
 
   else if(page === 'activations'){
 
-    $('activationPage').classList.remove('hidden');
+    $('activationPage')
+      .classList
+      .remove('hidden');
 
   }
 
   else if(page === 'admin'){
 
-    $('adminPage').classList.remove('hidden');
+    $('adminPage')
+      .classList
+      .remove('hidden');
 
-    if(sessionStorage.getItem('supportAdmin') === '1'){
+
+    if(
+      sessionStorage.getItem('supportAdmin') === '1'
+    ){
 
       showDashboard();
 
@@ -2495,14 +4139,20 @@ function go(page){
 
   else{
 
-    $('categoryPage').classList.remove('hidden');
+    $('categoryPage')
+      .classList
+      .remove('hidden');
 
-    renderCategory(page.toUpperCase());
+
+    renderCategory(
+      page.toUpperCase()
+    );
 
   }
 
 
   updateNav(page);
+
 
   window.scrollTo({
     top:0,
@@ -2512,16 +4162,18 @@ function go(page){
 }
 
 
-/* =========================================
+/* =========================================================
    ADMIN LOGIN
-========================================= */
+========================================================= */
 
 function adminLogin(e){
 
   e.preventDefault();
 
+
   const password =
     $('adminPassword').value;
+
 
   if(password === ADMIN_PASSWORD){
 
@@ -2530,11 +4182,17 @@ function adminLogin(e){
       '1'
     );
 
+
     $('adminPassword').value = '';
 
     $('loginError').textContent = '';
 
     showDashboard();
+
+
+    toast(
+      'تم تسجيل الدخول بنجاح'
+    );
 
   }
 
@@ -2554,27 +4212,42 @@ function adminLogin(e){
 
 function showLogin(){
 
-  $('adminLogin').classList.remove('hidden');
+  $('adminLogin')
+    .classList
+    .remove('hidden');
 
-  $('adminDashboard').classList.add('hidden');
+
+  $('adminDashboard')
+    .classList
+    .add('hidden');
 
 }
 
 
 function showDashboard(){
 
-  $('adminLogin').classList.add('hidden');
+  $('adminLogin')
+    .classList
+    .add('hidden');
 
-  $('adminDashboard').classList.remove('hidden');
+
+  $('adminDashboard')
+    .classList
+    .remove('hidden');
+
+
+  fillSettingsForm();
 
   renderAdmin();
+
+  refreshAnalytics();
 
 }
 
 
-/* =========================================
+/* =========================================================
    ADMIN LOGOUT
-========================================= */
+========================================================= */
 
 function adminLogout(){
 
@@ -2582,33 +4255,70 @@ function adminLogout(){
     'supportAdmin'
   );
 
+
   editId = null;
 
-  reset();
+  resetForm();
 
   showLogin();
+
+
+  toast(
+    'تم تسجيل الخروج'
+  );
 
 }
 
 
-/* =========================================
+/* =========================================================
    ADMIN LIST
-========================================= */
+========================================================= */
 
 function renderAdmin(){
 
-  if(!sessionStorage.getItem('supportAdmin')){
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
 
     return;
 
   }
 
 
+  const q =
+    ($('adminSearch')?.value || '')
+      .toLowerCase()
+      .trim();
+
+
+  const list =
+    files.filter(x =>
+
+      `${x.name} ${x.file} ${x.cat}`
+        .toLowerCase()
+        .includes(q)
+
+    );
+
+
   $('adminItems').innerHTML =
 
-    files.map(x=>`
+    list.map(x=>{
 
-      <div class="admin-item">
+      const key =
+        itemKey(x);
+
+
+      const count =
+        remoteStatsCache[key] ??
+        getLocalItemCount(key) ??
+        Number(x.downloads || 0);
+
+
+      return `
+
+      <div
+        class="admin-item ${x.visible === false ? 'hidden-item' : ''}">
 
         <img
           src="${safe(x.image || pic)}"
@@ -2626,7 +4336,32 @@ function renderAdmin(){
             ${safe(x.cat)} — ${safe(x.file || '')}
           </small>
 
+          <small class="item-downloads">
+            ↓ ${formatNumber(count)} تحميل
+          </small>
+
         </div>
+
+
+        <button
+          class="toggle"
+          type="button"
+          title="إظهار/إخفاء"
+          onclick="toggleItem(${Number(x.id)})">
+
+          ${x.visible === false ? 'إظهار' : 'إخفاء'}
+
+        </button>
+
+
+        <button
+          type="button"
+          onclick="duplicateItem(${Number(x.id)})">
+
+          نسخ
+
+        </button>
+
 
         <button
           type="button"
@@ -2636,7 +4371,9 @@ function renderAdmin(){
 
         </button>
 
+
         <button
+          class="delete"
           type="button"
           onclick="removeItem(${Number(x.id)})">
 
@@ -2646,112 +4383,244 @@ function renderAdmin(){
 
       </div>
 
-    `).join('')
+      `;
+
+    }).join('')
 
     ||
 
     '<div class="empty">لا توجد ملفات حاليًا.</div>';
 
+
+  $('adminFilesCount').textContent =
+    files.length;
+
+
+  $('adminVisibleCount').textContent =
+    files.filter(x=>x.visible !== false).length;
+
 }
 
 
-/* =========================================
-   ADD / EDIT
-========================================= */
+/* =========================================================
+   SAVE ITEM
+========================================================= */
 
-function saveItem(e){
+async function saveItem(e){
 
   e.preventDefault();
 
 
-  if(!sessionStorage.getItem('supportAdmin')){
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
 
     showLogin();
+
     return;
 
   }
 
 
-  const item = {
-
-    id:
-      editId ?? Date.now(),
-
-    cat:
-      $('fCat').value,
-
-    name:
-      $('fName').value.trim(),
-
-    file:
-      $('fFile').value.trim(),
-
-    size:
-      $('fSize').value.trim(),
-
-    url:
-      $('fUrl').value.trim(),
-
-    image:
-      $('fImage').value.trim() || pic
-
-  };
+  const button =
+    e.submitter;
 
 
-  if(editId === null){
+  if(button){
 
-    files = [
-      ...files,
-      item
-    ];
+    button.disabled = true;
+
+    button.textContent =
+      '⏳ جاري الحفظ...';
 
   }
 
-  else{
 
-    files =
-      files.map(x =>
-        x.id === editId
-          ? item
-          : x
-      );
+  try{
+
+    let finalImage =
+      $('fImage').value.trim();
+
+
+    /*
+      إذا اختار المستخدم صورة من الهاتف
+      نستخدم الصورة المضغوطة.
+    */
+
+    if(uploadedImageData){
+
+      finalImage =
+        uploadedImageData;
+
+    }
+
+
+    /*
+      إذا لم يضع صورة جديدة أثناء التعديل
+      نحافظ على الصورة القديمة.
+    */
+
+    if(
+      !finalImage &&
+      editId !== null
+    ){
+
+      const old =
+        files.find(
+          x=>Number(x.id) === Number(editId)
+        );
+
+
+      finalImage =
+        old?.image || pic;
+
+    }
+
+
+    const item = {
+
+      id:
+        editId ?? Date.now(),
+
+      cat:
+        $('fCat').value,
+
+      name:
+        $('fName').value.trim(),
+
+      file:
+        $('fFile').value.trim(),
+
+      size:
+        $('fSize').value.trim(),
+
+      url:
+        $('fUrl').value.trim(),
+
+      image:
+        finalImage || pic,
+
+      visible:
+        editId !== null
+          ? (
+              files.find(
+                x=>Number(x.id) === Number(editId)
+              )?.visible !== false
+            )
+          : true,
+
+      downloads:
+        editId !== null
+          ? Number(
+              files.find(
+                x=>Number(x.id) === Number(editId)
+              )?.downloads || 0
+            )
+          : 0
+
+    };
+
+
+    if(editId === null){
+
+      files = [
+        ...files,
+        item
+      ];
+
+    }
+
+    else{
+
+      files =
+        files.map(x=>
+          Number(x.id) === Number(editId)
+            ? item
+            : x
+        );
+
+    }
+
+
+    persistFiles();
+
+
+    resetForm();
+
+    renderFiles();
+
+    renderAdmin();
+
+
+    $('adminMessage').textContent =
+      '✓ تم حفظ الملف بنجاح';
+
+
+    toast(
+      'تم حفظ الملف بنجاح'
+    );
+
+
+  }
+  catch(error){
+
+    console.error(error);
+
+    $('adminMessage').textContent =
+      'حدث خطأ أثناء الحفظ.';
+
+  }
+  finally{
+
+    if(button){
+
+      button.disabled = false;
+
+      button.textContent =
+        '✓ حفظ الملف';
+
+    }
 
   }
 
+}
+
+
+/* =========================================================
+   PERSIST FILES
+========================================================= */
+
+function persistFiles(){
 
   localStorage.setItem(
     'supportCatalog',
     JSON.stringify(files)
   );
 
-
-  reset();
-
-  renderFiles();
-
-  renderAdmin();
-
-  alert('تم حفظ الملف بنجاح.');
-
 }
 
 
-/* =========================================
+/* =========================================================
    EDIT
-========================================= */
+========================================================= */
 
 function edit(id){
 
-  if(!sessionStorage.getItem('supportAdmin')){
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
 
     showLogin();
+
     return;
 
   }
 
 
   const x =
-    files.find(y => y.id === id);
+    files.find(
+      y=>Number(y.id) === Number(id)
+    );
 
 
   if(!x){
@@ -2761,26 +4630,46 @@ function edit(id){
   }
 
 
-  editId = id;
+  editId =
+    Number(id);
 
 
   $('fCat').value =
     x.cat;
 
+
   $('fName').value =
     x.name;
+
 
   $('fFile').value =
     x.file || '';
 
+
   $('fSize').value =
     x.size || '';
+
 
   $('fUrl').value =
     x.url || folder;
 
+
+  /*
+    لا نضع Data URL العملاق داخل input.
+  */
+
   $('fImage').value =
-    x.image || '';
+    x.image?.startsWith('data:')
+      ? ''
+      : (x.image || '');
+
+
+  uploadedImageData = '';
+
+
+  showImagePreview(
+    x.image || pic
+  );
 
 
   $('formTitle').textContent =
@@ -2789,96 +4678,1206 @@ function edit(id){
 
   go('admin');
 
+
+  setTimeout(()=>{
+
+    $('fName').focus();
+
+  },100);
+
 }
 
 
-/* =========================================
-   DELETE
-========================================= */
+/* =========================================================
+   DUPLICATE
+========================================================= */
 
-function removeItem(id){
+function duplicateItem(id){
 
-  if(!sessionStorage.getItem('supportAdmin')){
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
 
     showLogin();
+
     return;
 
   }
 
 
-  if(confirm('هل تريد حذف هذا الملف؟')){
+  const x =
+    files.find(
+      y=>Number(y.id) === Number(id)
+    );
+
+
+  if(!x){
+
+    return;
+
+  }
+
+
+  const copy = {
+
+    ...x,
+
+    id:Date.now(),
+
+    name:
+      `${x.name} — نسخة`,
+
+    downloads:0
+
+  };
+
+
+  files = [
+    ...files,
+    copy
+  ];
+
+
+  persistFiles();
+
+  renderAdmin();
+
+  renderFiles();
+
+
+  toast(
+    'تم نسخ الملف، عدّل الاسم والرابط إذا لزم'
+  );
+
+
+  edit(copy.id);
+
+}
+
+
+/* =========================================================
+   TOGGLE VISIBILITY
+========================================================= */
+
+function toggleItem(id){
+
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  files =
+    files.map(x=>
+
+      Number(x.id) === Number(id)
+
+        ? {
+            ...x,
+            visible:x.visible === false
+          }
+
+        : x
+
+    );
+
+
+  persistFiles();
+
+  renderAdmin();
+
+  renderFiles();
+
+
+  toast(
+    'تم تغيير حالة ظهور الملف'
+  );
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+function removeItem(id){
+
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  const item =
+    files.find(
+      x=>Number(x.id) === Number(id)
+    );
+
+
+  if(!item){
+
+    return;
+
+  }
+
+
+  if(
+    confirm(
+      `هل تريد حذف "${item.name}"؟`
+    )
+  ){
 
     files =
-      files.filter(x => x.id !== id);
+      files.filter(
+        x=>Number(x.id) !== Number(id)
+      );
 
 
-    localStorage.setItem(
-      'supportCatalog',
-      JSON.stringify(files)
-    );
+    persistFiles();
 
 
     renderAdmin();
 
     renderFiles();
 
+
+    toast(
+      'تم حذف الملف'
+    );
+
   }
 
 }
 
 
-/* =========================================
+/* =========================================================
    RESET FORM
-========================================= */
+========================================================= */
 
-function reset(){
+function resetForm(){
 
   editId = null;
+
+  uploadedImageData = '';
+
 
   $('formTitle').textContent =
     'إضافة ملف جديد';
 
-  $('fName').value = '';
 
-  $('fFile').value = '';
+  $('fCat').value =
+    'CEMEX';
 
-  $('fSize').value = '';
 
-  $('fUrl').value = '';
+  $('fName').value =
+    '';
 
-  $('fImage').value = '';
+
+  $('fFile').value =
+    '';
+
+
+  $('fSize').value =
+    '';
+
+
+  $('fUrl').value =
+    folder;
+
+
+  $('fImage').value =
+    '';
+
+
+  if($('fImageFile')){
+
+    $('fImageFile').value =
+      '';
+
+  }
+
+
+  showImagePreview(
+    pic
+  );
+
+
+  if($('adminMessage')){
+
+    $('adminMessage').textContent =
+      '';
+
+  }
 
 }
 
 
-/* =========================================
+/* Alias for old code compatibility */
+
+function reset(){
+
+  resetForm();
+
+}
+
+
+/* =========================================================
+   IMAGE UPLOAD
+========================================================= */
+
+function previewUploadedImage(event){
+
+  const file =
+    event.target.files?.[0];
+
+
+  if(!file){
+
+    uploadedImageData = '';
+
+    showImagePreview(
+      $('fImage').value.trim() || pic
+    );
+
+    return;
+
+  }
+
+
+  if(!file.type.startsWith('image/')){
+
+    toast(
+      'اختار ملف صورة فقط'
+    );
+
+    event.target.value =
+      '';
+
+    return;
+
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload = function(e){
+
+    const img =
+      new Image();
+
+
+    img.onload = function(){
+
+      /*
+        ضغط الصورة إلى مربع 700×700
+        مع الحفاظ على التناسب.
+      */
+
+      const max =
+        700;
+
+
+      const scale =
+        Math.min(
+          1,
+          max / Math.max(
+            img.width,
+            img.height
+          )
+        );
+
+
+      const canvas =
+        document.createElement('canvas');
+
+
+      canvas.width =
+        Math.max(
+          1,
+          Math.round(img.width * scale)
+        );
+
+
+      canvas.height =
+        Math.max(
+          1,
+          Math.round(img.height * scale)
+        );
+
+
+      const ctx =
+        canvas.getContext('2d');
+
+
+      ctx.fillStyle =
+        '#0b1512';
+
+
+      ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+
+      ctx.drawImage(
+        img,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+
+      uploadedImageData =
+        canvas.toDataURL(
+          'image/webp',
+          .82
+        );
+
+
+      showImagePreview(
+        uploadedImageData
+      );
+
+
+      toast(
+        'تم تجهيز الصورة للحفظ'
+      );
+
+    };
+
+
+    img.src =
+      e.target.result;
+
+  };
+
+
+  reader.readAsDataURL(file);
+
+}
+
+
+/* =========================================================
+   IMAGE PREVIEW
+========================================================= */
+
+function showImagePreview(src){
+
+  const img =
+    $('imagePreview');
+
+
+  if(!img){
+    return;
+  }
+
+
+  img.src =
+    src || pic;
+
+}
+
+
+/* =========================================================
+   SETTINGS FORM
+========================================================= */
+
+function fillSettingsForm(){
+
+  if(!$('settingWa')){
+    return;
+  }
+
+
+  $('settingWa').value =
+    settings.wa || '';
+
+
+  $('settingFolder').value =
+    settings.folder || '';
+
+
+  $('settingHelp').value =
+    settings.help || '';
+
+}
+
+
+/* =========================================================
+   SAVE SETTINGS
+========================================================= */
+
+function saveSettings(){
+
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  settings = {
+
+    folder:
+      $('settingFolder').value.trim()
+      || DEFAULT_SETTINGS.folder,
+
+    wa:
+      $('settingWa').value.trim()
+      || DEFAULT_SETTINGS.wa,
+
+    help:
+      $('settingHelp').value.trim()
+      || DEFAULT_SETTINGS.help
+
+  };
+
+
+  folder =
+    settings.folder;
+
+
+  wa =
+    settings.wa;
+
+
+  localStorage.setItem(
+    'supportSettings',
+    JSON.stringify(settings)
+  );
+
+
+  /*
+    تحديث الروابط الحالية
+  */
+
+  document
+    .querySelectorAll(
+      'a[href*="wa.me/message"]'
+    )
+    .forEach(a=>{
+      a.href = wa;
+    });
+
+
+  renderActs();
+
+
+  const helpText =
+    document.querySelector(
+      '.help p'
+    );
+
+
+  if(helpText){
+
+    helpText.textContent =
+      settings.help;
+
+  }
+
+
+  toast(
+    'تم حفظ إعدادات الموقع'
+  );
+
+}
+
+
+/* =========================================================
+   EXPORT BACKUP
+========================================================= */
+
+function exportBackup(){
+
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  const backup = {
+
+    version:3,
+
+    exportedAt:
+      new Date().toISOString(),
+
+    settings:
+
+      settings,
+
+    files:
+
+      files,
+
+    localStats:
+
+      getLocalStats()
+
+  };
+
+
+  const blob =
+    new Blob(
+      [
+        JSON.stringify(
+          backup,
+          null,
+          2
+        )
+      ],
+      {
+        type:'application/json'
+      }
+    );
+
+
+  const url =
+    URL.createObjectURL(blob);
+
+
+  const a =
+    document.createElement('a');
+
+
+  a.href =
+    url;
+
+
+  a.download =
+    `SUPPORT-TREND-BACKUP-${new Date().toISOString().slice(0,10)}.json`;
+
+
+  document.body.appendChild(a);
+
+  a.click();
+
+  a.remove();
+
+
+  URL.revokeObjectURL(url);
+
+
+  toast(
+    'تم إنشاء النسخة الاحتياطية'
+  );
+
+}
+
+
+/* =========================================================
+   IMPORT BACKUP
+========================================================= */
+
+function importBackup(event){
+
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  const file =
+    event.target.files?.[0];
+
+
+  if(!file){
+
+    return;
+
+  }
+
+
+  const reader =
+    new FileReader();
+
+
+  reader.onload =
+    function(e){
+
+      try{
+
+        const backup =
+          JSON.parse(
+            e.target.result
+          );
+
+
+        if(
+          !Array.isArray(
+            backup.files
+          )
+        ){
+
+          throw new Error(
+            'Invalid backup'
+          );
+
+        }
+
+
+        if(
+          !confirm(
+            'سيتم استبدال الملفات الحالية بالنسخة الاحتياطية. هل تريد المتابعة؟'
+          )
+        ){
+
+          event.target.value =
+            '';
+
+          return;
+
+        }
+
+
+        files =
+          backup.files.map((x,i)=>({
+
+            id:
+              x.id ?? Date.now()+i,
+
+            cat:
+              x.cat || 'IPTV',
+
+            name:
+              x.name || 'ملف',
+
+            file:
+              x.file || '',
+
+            size:
+              x.size || '',
+
+            url:
+              x.url || folder,
+
+            image:
+              x.image || pic,
+
+            visible:
+              x.visible !== false,
+
+            downloads:
+              Number(x.downloads || 0)
+
+          }));
+
+
+        if(
+          backup.settings
+        ){
+
+          settings =
+            {
+              ...DEFAULT_SETTINGS,
+              ...backup.settings
+            };
+
+
+          folder =
+            settings.folder;
+
+
+          wa =
+            settings.wa;
+
+
+          localStorage.setItem(
+            'supportSettings',
+            JSON.stringify(settings)
+          );
+
+        }
+
+
+        persistFiles();
+
+
+        if(
+          backup.localStats
+        ){
+
+          saveLocalStats(
+            backup.localStats
+          );
+
+        }
+
+
+        fillSettingsForm();
+
+        renderFiles();
+
+        renderAdmin();
+
+        renderActs();
+
+        refreshAnalytics();
+
+
+        toast(
+          'تم استرجاع النسخة الاحتياطية بنجاح'
+        );
+
+      }
+      catch(error){
+
+        console.error(error);
+
+        alert(
+          'ملف النسخة الاحتياطية غير صالح.'
+        );
+
+      }
+
+
+      event.target.value =
+        '';
+
+    };
+
+
+  reader.readAsText(
+    file,
+    'utf-8'
+  );
+
+}
+
+
+/* =========================================================
+   RESET LOCAL STATS
+========================================================= */
+
+function resetLocalStats(){
+
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
+
+    showLogin();
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      'هل تريد تصفير إحصائيات هذا المتصفح؟'
+    )
+  ){
+
+    return;
+
+  }
+
+
+  localStorage.removeItem(
+    LOCAL_STATS_KEY
+  );
+
+
+  localStorage.removeItem(
+    'supportVisitorDay'
+  );
+
+
+  remoteStatsCache = {};
+
+
+  renderFiles();
+
+  renderAdmin();
+
+  refreshAnalytics();
+
+
+  toast(
+    'تم تصفير الإحصائيات المحلية'
+  );
+
+}
+
+
+/* =========================================================
+   REFRESH ANALYTICS
+========================================================= */
+
+async function refreshAnalytics(){
+
+  if(
+    sessionStorage.getItem('supportAdmin') !== '1'
+  ){
+
+    return;
+
+  }
+
+
+  const local =
+    getLocalStats();
+
+
+  $('adminVisitors').textContent =
+    formatNumber(
+      local.visitors
+    );
+
+
+  $('adminDownloads').textContent =
+    formatNumber(
+      local.downloads
+    );
+
+
+  $('adminFilesCount').textContent =
+    files.length;
+
+
+  $('adminVisibleCount').textContent =
+    files.filter(
+      x=>x.visible !== false
+    ).length;
+
+
+  if(
+    $('analyticsStatus')
+  ){
+
+    if(
+      analyticsConfigured()
+    ){
+
+      $('analyticsStatus').textContent =
+        '● الإحصائيات العالمية مفعلة — يتم القراءة من CounterAPI.';
+
+      $('analyticsStatus').className =
+        'analytics-status ok';
+
+    }
+
+    else{
+
+      $('analyticsStatus').textContent =
+        '● الوضع المحلي — الإحصائيات تظهر لهذا المتصفح فقط. فعّل CounterAPI للإحصائيات العالمية.';
+
+      $('analyticsStatus').className =
+        'analytics-status warn';
+
+    }
+
+  }
+
+
+  /*
+    Remote totals
+  */
+
+  if(
+    analyticsConfigured()
+  ){
+
+    const visitors =
+      await getRemoteCount(
+        'visitors'
+      );
+
+
+    const downloads =
+      await getRemoteCount(
+        'downloads-total'
+      );
+
+
+    if(visitors !== null){
+
+      remoteStatsCache.visitors =
+        visitors;
+
+      $('adminVisitors').textContent =
+        formatNumber(visitors);
+
+    }
+
+
+    if(downloads !== null){
+
+      remoteStatsCache.downloads =
+        downloads;
+
+      $('adminDownloads').textContent =
+        formatNumber(downloads);
+
+    }
+
+
+    /*
+      تحميل إحصائيات كل ملف
+    */
+
+    for(const item of files){
+
+      const key =
+        itemKey(item);
+
+
+      const count =
+        await getRemoteCount(
+          counterName('downloads',item)
+        );
+
+
+      if(count !== null){
+
+        remoteStatsCache[key] =
+          count;
+
+      }
+
+    }
+
+  }
+
+
+  renderAdmin();
+
+  renderAnalyticsTable();
+
+}
+
+
+/* =========================================================
+   ANALYTICS TABLE
+========================================================= */
+
+function renderAnalyticsTable(){
+
+  const container =
+    $('analyticsDetails');
+
+
+  if(!container){
+    return;
+  }
+
+
+  const rows =
+    files
+      .slice()
+      .sort((a,b)=>{
+
+        const ac =
+          remoteStatsCache[itemKey(a)]
+          ??
+          getLocalItemCount(itemKey(a));
+
+        const bc =
+          remoteStatsCache[itemKey(b)]
+          ??
+          getLocalItemCount(itemKey(b));
+
+        return bc - ac;
+
+      })
+      .map(x=>{
+
+        const count =
+          remoteStatsCache[itemKey(x)]
+          ??
+          getLocalItemCount(itemKey(x))
+          ??
+          Number(x.downloads || 0);
+
+
+        return `
+
+          <tr>
+
+            <td>
+              ${safe(x.name)}
+            </td>
+
+            <td>
+              ${safe(x.cat)}
+            </td>
+
+            <td>
+              ${formatNumber(count)}
+            </td>
+
+          </tr>
+
+        `;
+
+      }).join('');
+
+
+  container.innerHTML = `
+
+    <div style="overflow:auto">
+
+      <table class="stats-table">
+
+        <thead>
+
+          <tr>
+
+            <th>
+              الجهاز
+            </th>
+
+            <th>
+              الشركة
+            </th>
+
+            <th>
+              التحميلات
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          ${
+            rows ||
+
+            `<tr>
+              <td colspan="3">
+                لا توجد ملفات.
+              </td>
+            </tr>`
+          }
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =========================================================
    INITIALIZATION
-========================================= */
+========================================================= */
 
-renderFiles();
+function init(){
 
-renderActs();
+  /*
+    التأكد من سلامة البيانات
+  */
 
-showLogin();
+  persistFiles();
 
 
-/* =========================================
+  /*
+    الإعدادات
+  */
+
+  fillSettingsForm();
+
+
+  /*
+    الروابط
+  */
+
+  document
+    .querySelectorAll(
+      'a[href*="wa.me/message"]'
+    )
+    .forEach(a=>{
+      a.href = wa;
+    });
+
+
+  /*
+    المحتوى
+  */
+
+  renderFiles();
+
+  renderActs();
+
+
+  /*
+    الصورة الافتراضية في لوحة الإدارة
+  */
+
+  showImagePreview(pic);
+
+
+  /*
+    الإحصائيات
+  */
+
+  trackVisitor();
+
+  loadRemoteHomeStats();
+
+}
+
+
+/* =========================================================
    HASH SUPPORT
-========================================= */
+========================================================= */
 
 function loadFromHash(){
 
   const hash =
-    location.hash.replace('#','').toLowerCase();
+    location.hash
+      .replace('#','')
+      .toLowerCase();
 
 
   if(
+
     hash === 'cemex' ||
+
     hash === 'newgold' ||
+
     hash === 'sunplus' ||
+
     hash === 'iptv' ||
+
     hash === 'activations' ||
+
     hash === 'admin'
+
   ){
 
     go(hash);
@@ -2900,7 +5899,34 @@ window.addEventListener(
 );
 
 
+/* =========================================================
+   START
+========================================================= */
+
+init();
+
 loadFromHash();
+
+
+/* =========================================================
+   AUTO UPDATE
+========================================================= */
+
+setInterval(()=>{
+
+  if(
+    sessionStorage.getItem('supportAdmin') === '1'
+  ){
+
+    /*
+      تحديث بسيط للوحة الإدارة
+    */
+
+    renderAdmin();
+
+  }
+
+},30000);
 
 </script>
 
