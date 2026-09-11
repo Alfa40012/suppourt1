@@ -3454,12 +3454,19 @@ footer{padding:40px 0;border-top:1px solid #21412e;margin-top:42px}.footer-brand
 .admin-settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-settings-grid label.full{grid-column:1/-1}.admin-settings-panel{margin-top:18px}.admin-settings-panel h2{margin-bottom:5px}.admin-settings-panel p{color:var(--muted);font-size:10px;line-height:1.8;margin-top:0}.st-control-row{align-items:center}.st-control-row strong{font-weight:900;color:#eaffc4}@media(max-width:700px){.admin-settings-grid{grid-template-columns:1fr}.admin-settings-grid label.full{grid-column:auto}}
 </style>
 
+<style id="final-professional-fixes">
+/* Final professional category system */
+.company-scroll{justify-content:flex-start!important;overflow-x:auto;padding:4px 0}.company-link{--cat-color:#aaff22;border-color:color-mix(in srgb,var(--cat-color) 45%,transparent);color:color-mix(in srgb,var(--cat-color) 82%,white)}.company-link:hover,.company-link.active{background:linear-gradient(135deg,color-mix(in srgb,var(--cat-color) 20%,transparent),rgba(0,0,0,.12));border-color:var(--cat-color);box-shadow:inset 0 -3px 0 var(--cat-color),0 0 20px color-mix(in srgb,var(--cat-color) 18%,transparent)}
+.category{--cat-color:#aaff22;border-color:color-mix(in srgb,var(--cat-color) 55%,#17342a);background:linear-gradient(145deg,color-mix(in srgb,var(--cat-color) 14%,#0b2118),#06100d)}.category:before{content:"";position:absolute;inset:0 0 auto;height:4px;background:var(--cat-color);box-shadow:0 0 18px var(--cat-color);opacity:.8}.category:hover{border-color:var(--cat-color);box-shadow:0 18px 55px rgba(0,0,0,.35),0 0 28px color-mix(in srgb,var(--cat-color) 20%,transparent)}.category strong{color:color-mix(in srgb,var(--cat-color) 88%,white)}.category-bottom{border-color:color-mix(in srgb,var(--cat-color) 38%,#214431)}.category-bottom span{background:color-mix(in srgb,var(--cat-color) 18%,transparent);color:var(--cat-color)}
+.logo-setting-preview{min-height:86px;display:grid;place-items:center;border:1px dashed #3c6744;border-radius:12px;color:#819287;font-size:10px;overflow:hidden;background:#06100d}.logo-setting-preview img{max-height:78px;max-width:100%;object-fit:contain}.st-control-row{flex-wrap:wrap}.st-control-row input[type=color]{width:34px;height:26px;padding:0;border:1px solid #527c49;border-radius:6px;background:transparent}.st-control-row .color-label{font-size:8px;color:#9dae9f}
+#stRealMusic,#stHeaderAudio,.st-quran-player{display:none!important}.st-sound-gate{display:none!important}
+</style>
 </head>
 
 
 <body>
 
-<audio id="stRealMusic" preload="none" src="https://server7.mp3quran.net/s_gmd/001.mp3" controls aria-label="سورة الفاتحة بصوت الشيخ سعد الغامدي"></audio>
+<audio id="stRealMusic" muted autoplay loop preload="auto" src="https://server7.mp3quran.net/s_gmd/001.mp3" controls aria-label="سورة الفاتحة بصوت الشيخ سعد الغامدي"></audio>
 
 
 
@@ -3505,7 +3512,7 @@ footer{padding:40px 0;border-top:1px solid #21412e;margin-top:42px}.footer-brand
 
     <div class="st-header-search"><span>⌕</span><input id="headerSearch" type="search" placeholder="ابحث عن موديل الجهاز أو اسم الملف..." autocomplete="off" oninput="document.getElementById('search').value=this.value;renderFiles()"></div>
 
-    <div class="st-quran-player"><span>سورة الفاتحة — سعد الغامدي</span><audio id="stHeaderAudio" preload="none" src="https://server7.mp3quran.net/s_gmd/001.mp3" controls aria-label="سورة الفاتحة بصوت الشيخ سعد الغامدي"></audio></div>
+    <div class="st-quran-player"><span>سورة الفاتحة — سعد الغامدي</span><audio id="stHeaderAudio" muted autoplay loop preload="auto" src="https://server7.mp3quran.net/s_gmd/001.mp3" controls aria-label="سورة الفاتحة بصوت الشيخ سعد الغامدي"></audio></div>
 
     <div class="header-actions">
 
@@ -4800,6 +4807,9 @@ footer{padding:40px 0;border-top:1px solid #21412e;margin-top:42px}.footer-brand
     <label>اسم الموقع<input id="setBrand" placeholder="SUPPORT TREND"></label>
     <label>النص الصغير في الهيدر<input id="setBrandSmall" placeholder="مركز السوفتات والتفعيلات"></label>
     <label class="full">شارة الهيدر<input id="setEyebrow" placeholder="منصة الدعم والملفات الموثوقة"></label>
+    <label class="full">صورة / شعار الموقع<input id="setLogo" type="url" placeholder="رابط صورة الشعار أو ارفعها من جهازك"></label>
+    <label class="full">رفع شعار من الجهاز<input id="setLogoFile" type="file" accept="image/*"></label>
+    <div class="logo-setting-preview full" id="setLogoPreview">معاينة الشعار الحالي</div>
     <label class="full">العنوان الرئيسي<input id="setHeroTitle" placeholder="كل ما تحتاجه لجهازك"></label>
     <label class="full">وصف الصفحة<textarea id="setHeroDescription" placeholder="اكتب وصفًا جذابًا للموقع"></textarea></label>
     <button class="btn primary" type="submit">✓ حفظ إعدادات الموقع</button>
@@ -6645,7 +6655,8 @@ const defaultSiteSettings = {
   brandSmall:'مركز السوفتات والتفعيلات',
   eyebrow:'منصة الدعم والملفات الموثوقة',
   heroTitle:'كل ما تحتاجه لجهازك',
-  heroDescription:'مكتبة منظمة للسوفتات والتفعيلات وملفات الأجهزة، مع دعم سريع ومباشر عبر واتساب.'
+  heroDescription:'مكتبة منظمة للسوفتات والتفعيلات وملفات الأجهزة، مع دعم سريع ومباشر عبر واتساب.',
+  logo:''
 };
 let siteSettings = (()=>{ try { return {...defaultSiteSettings, ...(JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')||{})}; } catch(e){ return {...defaultSiteSettings}; } })();
 function saveSiteSettings(){
@@ -6659,6 +6670,9 @@ function applySiteSettings(){
   const heroTitle = document.querySelector('.hero-title');
   const heroDesc = document.querySelector('.hero-description');
   const eyebrow = document.querySelector('.hero-copy .eyebrow');
+  const logo = document.querySelector('.logo');
+  if(logo && siteSettings.logo) logo.innerHTML = '<img src="'+safe(siteSettings.logo)+'" alt="شعار الموقع">';
+  const logoPreview = $('setLogoPreview'); if(logoPreview) logoPreview.innerHTML = siteSettings.logo ? '<img src="'+safe(siteSettings.logo)+'" alt="معاينة الشعار">' : 'معاينة الشعار الحالي';
   if(brand) brand.innerHTML = safe(siteSettings.brand).replace(/\s+(TREND)$/i,' <span>$1</span>');
   if(small) small.textContent = siteSettings.brandSmall;
   if(heroTitle) heroTitle.textContent = siteSettings.heroTitle;
@@ -6667,7 +6681,7 @@ function applySiteSettings(){
   document.title = siteSettings.brand + ' | مركز السوفتات والتفعيلات';
 }
 function renderSiteSettingsForm(){
-  const values = {setBrand:siteSettings.brand,setBrandSmall:siteSettings.brandSmall,setEyebrow:siteSettings.eyebrow,setHeroTitle:siteSettings.heroTitle,setHeroDescription:siteSettings.heroDescription};
+  const values = {setBrand:siteSettings.brand,setBrandSmall:siteSettings.brandSmall,setEyebrow:siteSettings.eyebrow,setHeroTitle:siteSettings.heroTitle,setHeroDescription:siteSettings.heroDescription,setLogo:siteSettings.logo||''};
   Object.entries(values).forEach(([id,value])=>{ const el=$(id); if(el) el.value=value; });
 }
 
@@ -6677,12 +6691,15 @@ document.getElementById('siteSettingsForm')?.addEventListener('submit', function
   saveSiteSettings();
 });
 
+document.getElementById('setLogoFile')?.addEventListener('change', function(event){const file=event.target.files?.[0];if(!file||!file.type.startsWith('image/'))return;const reader=new FileReader();reader.onload=()=>{siteSettings.logo=reader.result;const input=$('setLogo');if(input)input.value='';applySiteSettings();notifySaved('تم تجهيز الشعار، اضغط حفظ إعدادات الموقع لتثبيته.');};reader.readAsDataURL(file);});
+
 // Category edits are persisted and immediately reflected in the file form, filters and cards.
 function refreshCategoryUI(){
   const select=$('fCat'), filter=$('filter'), library=$('categoryLibrary');
   if(select) select.innerHTML=stCategories.map(x=>`<option value="${safe(x.name)}">${safe(x.name)}</option>`).join('');
   if(filter){ const current=filter.value; filter.innerHTML='<option value="all">كل الشركات</option>'+stCategories.map(x=>`<option value="${safe(x.name)}">${safe(x.name)}</option>`).join(''); filter.value=[...stCategories.map(x=>x.name),'all'].includes(current)?current:'all'; }
-  if(library){ library.innerHTML=stCategories.map(x=>`<a class="category" href="#${safe(x.name.toLowerCase())}" onclick="go('${safe(x.name.toLowerCase())}')"><div class="category-image"><img src="${DEFAULT_IMAGE}" alt="${safe(x.name)}"></div><strong>${safe(x.name)}</strong><small>${safe(x.label||'ملفات وأجهزة '+x.name)}</small><div class="category-bottom"><span>←</span><b>استعراض الملفات</b></div></a>`).join('') + `<a class="category" href="#activations" onclick="go('activations')"><div class="category-image"><img src="${DEFAULT_IMAGE}" alt="التفعيلات"></div><strong>التفعيلات</strong><small>جميع سيرفرات التفعيل</small><div class="category-bottom"><span>←</span><b>استعراض التفعيلات</b></div></a>`; }
+  stRenderNav();
+  if(library){ library.innerHTML=stCategories.map(x=>`<a class="category" style="--cat-color:${safe(x.color||'#aaff22')}" href="#${safe(x.name.toLowerCase())}" onclick="go('${safe(x.name.toLowerCase())}')"><div class="category-image"><img src="${DEFAULT_IMAGE}" alt="${safe(x.name)}"></div><strong>${safe(x.name)}</strong><small>${safe(x.label||'ملفات وأجهزة '+x.name)}</small><div class="category-bottom"><span>←</span><b>استعراض الملفات</b></div></a>`).join('') + `<a class="category" href="#activations" onclick="go('activations')"><div class="category-image"><img src="${DEFAULT_IMAGE}" alt="التفعيلات"></div><strong>التفعيلات</strong><small>جميع سيرفرات التفعيل</small><div class="category-bottom"><span>←</span><b>استعراض التفعيلات</b></div></a>`; }
 }
 applySiteSettings();
 renderSiteSettingsForm();
@@ -6807,17 +6824,19 @@ window.addEventListener(
   }
   stCairoClock(); setInterval(stCairoClock,1000);
   const CAT_KEY='supportTrendCategories_v1';
-  let stCategories=JSON.parse(localStorage.getItem(CAT_KEY)||'null')||[{name:'CEMEX',label:'سوفتات أجهزة Cemex'},{name:'NEWGOLD',label:'سوفتات أجهزة New Gold'},{name:'SUNPLUS',label:'سوفتات معالج Sunplus'},{name:'IPTV',label:'ملفات وخدمات IPTV'}];
+  let stCategories=JSON.parse(localStorage.getItem(CAT_KEY)||'null')||[{name:'CEMEX',label:'سوفتات أجهزة Cemex',color:'#38d996'},{name:'NEWGOLD',label:'سوفتات أجهزة New Gold',color:'#ffb84d'},{name:'SUNPLUS',label:'سوفتات معالج Sunplus',color:'#66b7ff'},{name:'IPTV',label:'ملفات وخدمات IPTV',color:'#d68cff'}]; stCategories=stCategories.map((x,i)=>({...x,color:x.color||['#38d996','#ffb84d','#66b7ff','#d68cff'][i%4]}));
   function stSaveCats(){localStorage.setItem(CAT_KEY,JSON.stringify(stCategories));}
+  window.stSetCategoryColor=function(i,color){if(!stCategories[i])return;stCategories[i].color=color;stSaveCats();stRenderCats();refreshCategoryUI();notifySaved('تم حفظ لون القسم.');};
+  function stRenderNav(){const nav=document.querySelector('.company-scroll');if(!nav)return;nav.innerHTML='<a class="company-link active" data-page="home" href="#home" onclick="go(\'home\')"><span class="nav-icon">⌂</span>الرئيسية</a>'+stCategories.map(x=>'<a class="company-link" data-page="'+safe(x.name.toLowerCase())+'" href="#'+safe(x.name.toLowerCase())+'" style="--cat-color:'+safe(x.color||'#aaff22')+'" onclick="go(\''+safe(x.name.toLowerCase())+'\')"><span class="nav-icon">◈</span>'+safe(x.name)+'</a>').join('')+'<a class="company-link" data-page="activations" href="#activations" onclick="go(\'activations\')"><span class="nav-icon">⚡</span>التفعيلات</a>'; }
   function stRenderCats(){
     const list=document.getElementById('stCategoryList'); if(!list)return;
-    list.innerHTML=stCategories.map((x,i)=>'<div class="st-control-row"><strong>'+safe(x.name)+'</strong><small>'+safe(x.label||'')+'</small><button type="button" onclick="stEditCategory('+i+')">تعديل</button><button type="button" class="delete" onclick="stDeleteCategory('+i+')">حذف</button></div>').join('');
+    list.innerHTML=stCategories.map((x,i)=>'<div class="st-control-row"><strong>'+safe(x.name)+'</strong><small>'+safe(x.label||'')+'</small><span class="color-label">لون</span><input type="color" value="'+safe(x.color||'#aaff22')+'" onchange="stSetCategoryColor('+i+',this.value)"><button type="button" onclick="stEditCategory('+i+')">تعديل</button><button type="button" class="delete" onclick="stDeleteCategory('+i+')">حذف</button></div>').join('');
     const select=document.getElementById('fCat'); if(select) select.innerHTML=stCategories.map(x=>'<option>'+safe(x.name)+'</option>').join('');
     const adminCount=document.getElementById('adminCategories'); if(adminCount)adminCount.textContent=stCategories.length;
   }
-  window.stEditCategory=function(i){const old=stCategories[i].name;const n=prompt('اسم القسم الجديد',old);if(n&&n.trim()){const next=n.trim().toUpperCase();if(stCategories.some((x,j)=>j!==i&&x.name===next))return alert('اسم القسم موجود بالفعل.');const d=prompt('وصف القسم',stCategories[i].label||'')||'';stCategories[i]={name:next,label:d.trim()};files=files.map(x=>x.cat===old?{...x,cat:next}:x);stSaveCats();saveFiles();stRenderCats();refreshCategoryUI();renderFiles();notifySaved('تم تعديل القسم والملفات التابعة له.');}};
+  window.stEditCategory=function(i){const old=stCategories[i].name;const n=prompt('اسم القسم الجديد',old);if(n&&n.trim()){const next=n.trim().toUpperCase();if(stCategories.some((x,j)=>j!==i&&x.name===next))return alert('اسم القسم موجود بالفعل.');const d=prompt('وصف القسم',stCategories[i].label||'')||'';stCategories[i]={name:next,label:d.trim(),color:stCategories[i].color||'#aaff22'};files=files.map(x=>x.cat===old?{...x,cat:next}:x);stSaveCats();saveFiles();stRenderCats();refreshCategoryUI();renderFiles();notifySaved('تم تعديل القسم والملفات التابعة له.');}};
   window.stDeleteCategory=function(i){if(stCategories.length<=1)return alert('يجب أن يبقى قسم واحد على الأقل.');if(confirm('حذف قسم '+stCategories[i].name+'؟')){const removed=stCategories[i].name;stCategories.splice(i,1);stSaveCats();files=files.map(x=>x.cat===removed?{...x,cat:stCategories[0].name}:x);saveFiles();stRenderCats();refreshCategoryUI();renderFiles();notifySaved('تم حذف القسم ونقل ملفاته للقسم الأول.');}};
-  document.getElementById('stCategoryForm')?.addEventListener('submit',function(e){e.preventDefault();const name=document.getElementById('stCategoryName').value.trim().toUpperCase();const label=document.getElementById('stCategoryLabel').value.trim();if(!stCategories.some(x=>x.name===name)){stCategories.push({name,label});stSaveCats();stRenderCats();refreshCategoryUI();notifySaved('تمت إضافة القسم وحفظه.');}this.reset();});
+  document.getElementById('stCategoryForm')?.addEventListener('submit',function(e){e.preventDefault();const name=document.getElementById('stCategoryName').value.trim().toUpperCase();const label=document.getElementById('stCategoryLabel').value.trim();if(!stCategories.some(x=>x.name===name)){stCategories.push({name,label,color:['#38d996','#ffb84d','#66b7ff','#d68cff'][stCategories.length%4]});stSaveCats();stRenderCats();refreshCategoryUI();notifySaved('تمت إضافة القسم وحفظه.');}this.reset();});
   document.getElementById('stRenewForm')?.addEventListener('submit',function(e){e.preventDefault();const n=document.getElementById('stRenewName').value.trim(),p=document.getElementById('stRenewPhone').value.trim(),d=document.getElementById('stRenewDevice').value,t=document.getElementById('stRenewPeriod').value,notes=document.getElementById('stRenewNote').value.trim();const text='طلب تجديد اشتراك IPTV\n\nاسم العميل: '+n+'\nرقم العميل: '+p+'\nالجهاز: '+d+'\nالمدة: '+t+'\nملاحظات: '+notes;window.open(WHATSAPP+'?text='+encodeURIComponent(text),'_blank','noopener');});
   const oldShowDashboard=window.showDashboard; window.showDashboard=function(){oldShowDashboard();setTimeout(stRenderCats,50);};
   stRenderCats();
@@ -6842,6 +6861,6 @@ window.addEventListener(
   <a href="#admin" onclick="go('admin')">🔐<span>الإدارة</span></a>
 </nav>
 
-<script>window.addEventListener('DOMContentLoaded',function(){const a=document.getElementById('stHeaderAudio')||document.getElementById('stRealMusic');if(a){a.volume=.75;const p=a.play();if(p&&p.catch)p.catch(function(){a.title='اضغط تشغيل لسماع سورة الفاتحة بصوت سعد الغامدي';});}});</script>
+<script>window.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('#stHeaderAudio,#stRealMusic').forEach(function(a){a.muted=true;a.volume=0;a.play().catch(function(){});});});</script>
 </body>
 </html>
