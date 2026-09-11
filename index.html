@@ -3439,6 +3439,21 @@ footer{padding:40px 0;border-top:1px solid #21412e;margin-top:42px}.footer-brand
 @media(max-width:380px){.wrap{width:calc(100% - 20px)}.brand-text small{display:none}.hero-title{font-size:39px}.library{gap:7px}.category{min-height:195px}.file{grid-template-columns:76px minmax(0,1fr)}.file-thumb{width:76px;height:73px}}
 </style>
 
+
+<style id="support-trend-premium-overrides">
+:root{--lime:#b7ff35;--lime2:#74df20;--accent:#d9ff78;--header-glow:#8ee83a}
+.site-header{background:linear-gradient(135deg,rgba(8,28,18,.98),rgba(2,8,6,.96) 62%,rgba(18,48,24,.94));border-bottom:1px solid rgba(183,255,53,.28);box-shadow:0 12px 45px rgba(0,0,0,.28),inset 0 -1px rgba(183,255,53,.1)}
+.site-header:after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 82% 20%,rgba(183,255,53,.18),transparent 25%),linear-gradient(110deg,transparent 25%,rgba(183,255,53,.06),transparent 70%)}
+.topbar,.company-scroll{position:relative;z-index:1}.logo{border-radius:17px;transform:rotate(-4deg);box-shadow:0 0 0 4px rgba(183,255,53,.09),0 0 34px rgba(183,255,53,.32)}
+.brand-text b{font-weight:900;letter-spacing:1px}.brand-text small{font-weight:700;color:#a8bcae}
+.company-link{font-size:11px;font-weight:900;letter-spacing:.15px}.company-link.active{border-color:var(--lime);background:linear-gradient(135deg,rgba(183,255,53,.2),rgba(183,255,53,.05));color:#e4ffb6}
+.section-head h2,.page-title h1,.st-device-head h2,.st-inbox-copy h2{font-weight:900}.section-head h2:after{content:"";display:block;width:62px;height:4px;margin-top:9px;border-radius:99px;background:linear-gradient(90deg,var(--lime),transparent)}
+.category strong,.category-bottom b,.file h3,.activation h3{font-weight:900}.category{border-color:rgba(183,255,53,.2)}
+.admin-grid{align-items:start}.admin-grid>.panel,.st-admin-control>.panel{border-color:rgba(183,255,53,.22);box-shadow:0 18px 50px rgba(0,0,0,.2)}
+.admin-actions{flex-wrap:wrap}.admin-save-state{display:flex;align-items:center;gap:8px;margin-top:12px;padding:10px 12px;border-radius:10px;background:rgba(183,255,53,.07);color:#bfe994;font-size:10px;font-weight:800}.admin-save-state.error{color:#ff9a93;background:rgba(255,113,105,.1)}
+.admin-settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.admin-settings-grid label.full{grid-column:1/-1}.admin-settings-panel{margin-top:18px}.admin-settings-panel h2{margin-bottom:5px}.admin-settings-panel p{color:var(--muted);font-size:10px;line-height:1.8;margin-top:0}.st-control-row{align-items:center}.st-control-row strong{font-weight:900;color:#eaffc4}@media(max-width:700px){.admin-settings-grid{grid-template-columns:1fr}.admin-settings-grid label.full{grid-column:auto}}
+</style>
+
 </head>
 
 
@@ -3890,7 +3905,7 @@ footer{padding:40px 0;border-top:1px solid #21412e;margin-top:42px}.footer-brand
   </div>
 
 
-  <div class="library">
+  <div class="library" id="categoryLibrary">
 
 
     <a
@@ -4775,6 +4790,23 @@ footer{padding:40px 0;border-top:1px solid #21412e;margin-top:42px}.footer-brand
 </div>
 
 
+
+
+<!-- SITE SETTINGS -->
+<div class="panel admin-settings-panel">
+  <h2>إعدادات الموقع والهيدر</h2>
+  <p>عدّل اسم الموقع والوصف والعنوان الرئيسي من هنا. اضغط حفظ الإعدادات لتظهر التغييرات فورًا ويتم تخزينها على نفس الجهاز.</p>
+  <form id="siteSettingsForm" class="admin-settings-grid">
+    <label>اسم الموقع<input id="setBrand" placeholder="SUPPORT TREND"></label>
+    <label>النص الصغير في الهيدر<input id="setBrandSmall" placeholder="مركز السوفتات والتفعيلات"></label>
+    <label class="full">شارة الهيدر<input id="setEyebrow" placeholder="منصة الدعم والملفات الموثوقة"></label>
+    <label class="full">العنوان الرئيسي<input id="setHeroTitle" placeholder="كل ما تحتاجه لجهازك"></label>
+    <label class="full">وصف الصفحة<textarea id="setHeroDescription" placeholder="اكتب وصفًا جذابًا للموقع"></textarea></label>
+    <button class="btn primary" type="submit">✓ حفظ إعدادات الموقع</button>
+  </form>
+  <div id="adminSaveState" class="admin-save-state" role="status">جاهز للحفظ — كل تعديل يتم تخزينه محليًا.</div>
+</div>
+
 <!-- EXTENDED ADMIN CONTROL CENTER -->
 <div class="st-admin-control">
   <div class="panel">
@@ -5228,23 +5260,38 @@ function formatNumber(number){
 }
 
 
-function saveFiles(){
+function writeStorage(key, value){
 
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify(files)
-  );
+  try{
+    localStorage.setItem(key, JSON.stringify(value));
+    return true;
+  }
+  catch(error){
+    console.error('تعذر حفظ البيانات محليًا:', error);
+    const state = $('adminSaveState');
+    if(state){
+      state.textContent = 'تعذر الحفظ: مساحة التخزين ممتلئة أو غير متاحة.';
+      state.classList.add('error');
+    }
+    return false;
+  }
 
 }
 
+function saveFiles(){
+  return writeStorage(STORAGE_KEY, files);
+}
 
 function saveStats(){
+  return writeStorage(STATS_KEY, stats);
+}
 
-  localStorage.setItem(
-    STATS_KEY,
-    JSON.stringify(stats)
-  );
-
+function notifySaved(message='تم الحفظ بنجاح على هذا الجهاز.'){
+  const state = $('adminSaveState');
+  if(state){
+    state.textContent = '✓ ' + message;
+    state.classList.remove('error');
+  }
 }
 
 
@@ -5655,7 +5702,7 @@ function updateStatsUI(){
   if($('adminCategories')){
 
     $('adminCategories').textContent =
-      '5';
+      new Set(files.map(x => x.cat).filter(Boolean)).size;
 
   }
 
@@ -6132,8 +6179,8 @@ function saveItem(event){
   }
 
 
-  saveFiles();
-
+  const saved = saveFiles();
+  const wasEditing = editId !== null;
 
   resetForm();
 
@@ -6145,11 +6192,10 @@ function saveItem(event){
   updateStatsUI();
 
 
-  alert(
-    editId === null
-      ? 'تمت إضافة الملف بنجاح.'
-      : 'تم تعديل الملف بنجاح.'
-  );
+  if(saved){
+    notifySaved(wasEditing ? 'تم تعديل الملف وحفظه بنجاح.' : 'تمت إضافة الملف وحفظها بنجاح.');
+    alert(wasEditing ? 'تم تعديل الملف وحفظه بنجاح.' : 'تمت إضافة الملف وحفظها بنجاح.');
+  }
 
 }
 
@@ -6574,7 +6620,7 @@ function loadFromHash(){
   ];
 
 
-  if(valid.includes(hash)){
+  if(valid.includes(hash) || (()=>{try{return (JSON.parse(localStorage.getItem('supportTrendCategories_v1')||'[]')||[]).some(x => String(x.name).toLowerCase() === hash)}catch(e){return false}})()){
 
     go(hash);
 
@@ -6586,6 +6632,60 @@ function loadFromHash(){
   }
 
 }
+
+
+
+
+/* =========================================================
+   PERSISTENT SITE SETTINGS + DYNAMIC CATEGORIES
+========================================================= */
+const SETTINGS_KEY = 'supportTrendSiteSettings_v1';
+const defaultSiteSettings = {
+  brand:'SUPPORT TREND',
+  brandSmall:'مركز السوفتات والتفعيلات',
+  eyebrow:'منصة الدعم والملفات الموثوقة',
+  heroTitle:'كل ما تحتاجه لجهازك',
+  heroDescription:'مكتبة منظمة للسوفتات والتفعيلات وملفات الأجهزة، مع دعم سريع ومباشر عبر واتساب.'
+};
+let siteSettings = (()=>{ try { return {...defaultSiteSettings, ...(JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')||{})}; } catch(e){ return {...defaultSiteSettings}; } })();
+function saveSiteSettings(){
+  const ok = writeStorage(SETTINGS_KEY, siteSettings);
+  if(ok){ applySiteSettings(); notifySaved('تم حفظ إعدادات الموقع والهيدر بنجاح.'); }
+  return ok;
+}
+function applySiteSettings(){
+  const brand = document.querySelector('.brand-text b');
+  const small = document.querySelector('.brand-text small');
+  const heroTitle = document.querySelector('.hero-title');
+  const heroDesc = document.querySelector('.hero-description');
+  const eyebrow = document.querySelector('.hero-copy .eyebrow');
+  if(brand) brand.innerHTML = safe(siteSettings.brand).replace(/\s+(TREND)$/i,' <span>$1</span>');
+  if(small) small.textContent = siteSettings.brandSmall;
+  if(heroTitle) heroTitle.textContent = siteSettings.heroTitle;
+  if(heroDesc) heroDesc.textContent = siteSettings.heroDescription;
+  if(eyebrow) eyebrow.textContent = '⌁ ' + siteSettings.eyebrow;
+  document.title = siteSettings.brand + ' | مركز السوفتات والتفعيلات';
+}
+function renderSiteSettingsForm(){
+  const values = {setBrand:siteSettings.brand,setBrandSmall:siteSettings.brandSmall,setEyebrow:siteSettings.eyebrow,setHeroTitle:siteSettings.heroTitle,setHeroDescription:siteSettings.heroDescription};
+  Object.entries(values).forEach(([id,value])=>{ const el=$(id); if(el) el.value=value; });
+}
+
+document.getElementById('siteSettingsForm')?.addEventListener('submit', function(event){
+  event.preventDefault();
+  siteSettings = {brand:$('setBrand').value.trim()||defaultSiteSettings.brand, brandSmall:$('setBrandSmall').value.trim()||defaultSiteSettings.brandSmall, eyebrow:$('setEyebrow').value.trim()||defaultSiteSettings.eyebrow, heroTitle:$('setHeroTitle').value.trim()||defaultSiteSettings.heroTitle, heroDescription:$('setHeroDescription').value.trim()||defaultSiteSettings.heroDescription};
+  saveSiteSettings();
+});
+
+// Category edits are persisted and immediately reflected in the file form, filters and cards.
+function refreshCategoryUI(){
+  const select=$('fCat'), filter=$('filter'), library=$('categoryLibrary');
+  if(select) select.innerHTML=stCategories.map(x=>`<option value="${safe(x.name)}">${safe(x.name)}</option>`).join('');
+  if(filter){ const current=filter.value; filter.innerHTML='<option value="all">كل الشركات</option>'+stCategories.map(x=>`<option value="${safe(x.name)}">${safe(x.name)}</option>`).join(''); filter.value=[...stCategories.map(x=>x.name),'all'].includes(current)?current:'all'; }
+  if(library){ library.innerHTML=stCategories.map(x=>`<a class="category" href="#${safe(x.name.toLowerCase())}" onclick="go('${safe(x.name.toLowerCase())}')"><div class="category-image"><img src="${DEFAULT_IMAGE}" alt="${safe(x.name)}"></div><strong>${safe(x.name)}</strong><small>${safe(x.label||'ملفات وأجهزة '+x.name)}</small><div class="category-bottom"><span>←</span><b>استعراض الملفات</b></div></a>`).join('') + `<a class="category" href="#activations" onclick="go('activations')"><div class="category-image"><img src="${DEFAULT_IMAGE}" alt="التفعيلات"></div><strong>التفعيلات</strong><small>جميع سيرفرات التفعيل</small><div class="category-bottom"><span>←</span><b>استعراض التفعيلات</b></div></a>`; }
+}
+applySiteSettings();
+renderSiteSettingsForm();
 
 
 /* =========================================================
@@ -6715,9 +6815,9 @@ window.addEventListener(
     const select=document.getElementById('fCat'); if(select) select.innerHTML=stCategories.map(x=>'<option>'+safe(x.name)+'</option>').join('');
     const adminCount=document.getElementById('adminCategories'); if(adminCount)adminCount.textContent=stCategories.length;
   }
-  window.stEditCategory=function(i){const n=prompt('اسم القسم الجديد',stCategories[i].name);if(n&&n.trim()){const d=prompt('وصف القسم',stCategories[i].label||'')||'';stCategories[i]={name:n.trim().toUpperCase(),label:d.trim()};stSaveCats();stRenderCats();}};
-  window.stDeleteCategory=function(i){if(stCategories.length<=1)return alert('يجب أن يبقى قسم واحد على الأقل.');if(confirm('حذف قسم '+stCategories[i].name+'؟')){stCategories.splice(i,1);stSaveCats();stRenderCats();}};
-  document.getElementById('stCategoryForm')?.addEventListener('submit',function(e){e.preventDefault();const name=document.getElementById('stCategoryName').value.trim().toUpperCase();const label=document.getElementById('stCategoryLabel').value.trim();if(!stCategories.some(x=>x.name===name)){stCategories.push({name,label});stSaveCats();stRenderCats();}this.reset();});
+  window.stEditCategory=function(i){const old=stCategories[i].name;const n=prompt('اسم القسم الجديد',old);if(n&&n.trim()){const next=n.trim().toUpperCase();if(stCategories.some((x,j)=>j!==i&&x.name===next))return alert('اسم القسم موجود بالفعل.');const d=prompt('وصف القسم',stCategories[i].label||'')||'';stCategories[i]={name:next,label:d.trim()};files=files.map(x=>x.cat===old?{...x,cat:next}:x);stSaveCats();saveFiles();stRenderCats();refreshCategoryUI();renderFiles();notifySaved('تم تعديل القسم والملفات التابعة له.');}};
+  window.stDeleteCategory=function(i){if(stCategories.length<=1)return alert('يجب أن يبقى قسم واحد على الأقل.');if(confirm('حذف قسم '+stCategories[i].name+'؟')){const removed=stCategories[i].name;stCategories.splice(i,1);stSaveCats();files=files.map(x=>x.cat===removed?{...x,cat:stCategories[0].name}:x);saveFiles();stRenderCats();refreshCategoryUI();renderFiles();notifySaved('تم حذف القسم ونقل ملفاته للقسم الأول.');}};
+  document.getElementById('stCategoryForm')?.addEventListener('submit',function(e){e.preventDefault();const name=document.getElementById('stCategoryName').value.trim().toUpperCase();const label=document.getElementById('stCategoryLabel').value.trim();if(!stCategories.some(x=>x.name===name)){stCategories.push({name,label});stSaveCats();stRenderCats();refreshCategoryUI();notifySaved('تمت إضافة القسم وحفظه.');}this.reset();});
   document.getElementById('stRenewForm')?.addEventListener('submit',function(e){e.preventDefault();const n=document.getElementById('stRenewName').value.trim(),p=document.getElementById('stRenewPhone').value.trim(),d=document.getElementById('stRenewDevice').value,t=document.getElementById('stRenewPeriod').value,notes=document.getElementById('stRenewNote').value.trim();const text='طلب تجديد اشتراك IPTV\n\nاسم العميل: '+n+'\nرقم العميل: '+p+'\nالجهاز: '+d+'\nالمدة: '+t+'\nملاحظات: '+notes;window.open(WHATSAPP+'?text='+encodeURIComponent(text),'_blank','noopener');});
   const oldShowDashboard=window.showDashboard; window.showDashboard=function(){oldShowDashboard();setTimeout(stRenderCats,50);};
   stRenderCats();
