@@ -3461,6 +3461,9 @@ footer{padding:40px 0;border-top:1px solid #21412e;margin-top:42px}.footer-brand
 .logo-setting-preview{min-height:86px;display:grid;place-items:center;border:1px dashed #3c6744;border-radius:12px;color:#819287;font-size:10px;overflow:hidden;background:#06100d}.logo-setting-preview img{max-height:78px;max-width:100%;object-fit:contain}.st-control-row{flex-wrap:wrap}.st-control-row input[type=color]{width:34px;height:26px;padding:0;border:1px solid #527c49;border-radius:6px;background:transparent}.st-control-row .color-label{font-size:8px;color:#9dae9f}
 #stRealMusic,#stHeaderAudio,.st-quran-player{display:none!important}.st-sound-gate{display:none!important}
 </style>
+<style id="hero-frame-image-style">
+.hero-visual{position:relative;isolation:isolate}.hero-frame-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit;z-index:0;filter:saturate(1.08) contrast(1.04);}.hero-visual.has-custom-image .planet,.hero-visual.has-custom-image .dish,.hero-visual.has-custom-image .signal,.hero-visual.has-custom-image .receiver{display:none}.hero-visual.has-custom-image:after{content:"";position:absolute;inset:0;z-index:1;border-radius:inherit;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.18));pointer-events:none}.hero-visual.has-custom-image .hero-frame-image{z-index:0}.logo-setting-preview img{width:100%;height:100px;object-fit:contain}.hero-frame-preview img{width:100%;height:150px;object-fit:cover;border-radius:10px}
+</style>
 </head>
 
 
@@ -3753,6 +3756,8 @@ footer{padding:40px 0;border-top:1px solid #21412e;margin-top:42px}.footer-brand
   <!-- HERO GRAPHIC -->
 
   <div class="hero-visual">
+
+    <img id="heroFrameImage" class="hero-frame-image" alt="صورة الهيدر" hidden>
 
     <div class="planet"></div>
 
@@ -4808,6 +4813,9 @@ footer{padding:40px 0;border-top:1px solid #21412e;margin-top:42px}.footer-brand
     <label>النص الصغير في الهيدر<input id="setBrandSmall" placeholder="مركز السوفتات والتفعيلات"></label>
     <label class="full">شارة الهيدر<input id="setEyebrow" placeholder="منصة الدعم والملفات الموثوقة"></label>
     <label class="full">صورة / شعار الموقع<input id="setLogo" type="url" placeholder="رابط صورة الشعار أو ارفعها من جهازك"></label>
+    <label class="full">صورة إطار الهيدر<input id="setHeroImage" type="url" placeholder="رابط الصورة التي ستظهر داخل الإطار الكبير"></label>
+    <label class="full">رفع صورة إطار الهيدر<input id="setHeroImageFile" type="file" accept="image/*"></label>
+    <div class="logo-setting-preview full" id="setHeroImagePreview">معاينة صورة إطار الهيدر</div>
     <label class="full">رفع شعار من الجهاز<input id="setLogoFile" type="file" accept="image/*"></label>
     <div class="logo-setting-preview full" id="setLogoPreview">معاينة الشعار الحالي</div>
     <label class="full">العنوان الرئيسي<input id="setHeroTitle" placeholder="كل ما تحتاجه لجهازك"></label>
@@ -6656,7 +6664,8 @@ const defaultSiteSettings = {
   eyebrow:'منصة الدعم والملفات الموثوقة',
   heroTitle:'كل ما تحتاجه لجهازك',
   heroDescription:'مكتبة منظمة للسوفتات والتفعيلات وملفات الأجهزة، مع دعم سريع ومباشر عبر واتساب.',
-  logo:''
+  logo:'',
+  heroImage:''
 };
 let siteSettings = (()=>{ try { return {...defaultSiteSettings, ...(JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')||{})}; } catch(e){ return {...defaultSiteSettings}; } })();
 function saveSiteSettings(){
@@ -6673,6 +6682,7 @@ function applySiteSettings(){
   const logo = document.querySelector('.logo');
   if(logo && siteSettings.logo) logo.innerHTML = '<img src="'+safe(siteSettings.logo)+'" alt="شعار الموقع">';
   const logoPreview = $('setLogoPreview'); if(logoPreview) logoPreview.innerHTML = siteSettings.logo ? '<img src="'+safe(siteSettings.logo)+'" alt="معاينة الشعار">' : 'معاينة الشعار الحالي';
+  const frame=document.querySelector('.hero-visual'), frameImage=$('heroFrameImage'), framePreview=$('setHeroImagePreview'); if(frame&&frameImage){if(siteSettings.heroImage){frameImage.src=siteSettings.heroImage;frameImage.hidden=false;frame.classList.add('has-custom-image');if(framePreview)framePreview.innerHTML='<img src="'+safe(siteSettings.heroImage)+'" alt="معاينة إطار الهيدر">';}else{frameImage.removeAttribute('src');frameImage.hidden=true;frame.classList.remove('has-custom-image');if(framePreview)framePreview.textContent='معاينة صورة إطار الهيدر';}}
   if(brand) brand.innerHTML = safe(siteSettings.brand).replace(/\s+(TREND)$/i,' <span>$1</span>');
   if(small) small.textContent = siteSettings.brandSmall;
   if(heroTitle) heroTitle.textContent = siteSettings.heroTitle;
@@ -6681,17 +6691,18 @@ function applySiteSettings(){
   document.title = siteSettings.brand + ' | مركز السوفتات والتفعيلات';
 }
 function renderSiteSettingsForm(){
-  const values = {setBrand:siteSettings.brand,setBrandSmall:siteSettings.brandSmall,setEyebrow:siteSettings.eyebrow,setHeroTitle:siteSettings.heroTitle,setHeroDescription:siteSettings.heroDescription,setLogo:siteSettings.logo||''};
+  const values = {setBrand:siteSettings.brand,setBrandSmall:siteSettings.brandSmall,setEyebrow:siteSettings.eyebrow,setHeroTitle:siteSettings.heroTitle,setHeroDescription:siteSettings.heroDescription,setLogo:siteSettings.logo||'',setHeroImage:siteSettings.heroImage||''};
   Object.entries(values).forEach(([id,value])=>{ const el=$(id); if(el) el.value=value; });
 }
 
 document.getElementById('siteSettingsForm')?.addEventListener('submit', function(event){
   event.preventDefault();
-  siteSettings = {brand:$('setBrand').value.trim()||defaultSiteSettings.brand, brandSmall:$('setBrandSmall').value.trim()||defaultSiteSettings.brandSmall, eyebrow:$('setEyebrow').value.trim()||defaultSiteSettings.eyebrow, heroTitle:$('setHeroTitle').value.trim()||defaultSiteSettings.heroTitle, heroDescription:$('setHeroDescription').value.trim()||defaultSiteSettings.heroDescription};
+  siteSettings = {brand:$('setBrand').value.trim()||defaultSiteSettings.brand, brandSmall:$('setBrandSmall').value.trim()||defaultSiteSettings.brandSmall, eyebrow:$('setEyebrow').value.trim()||defaultSiteSettings.eyebrow, heroTitle:$('setHeroTitle').value.trim()||defaultSiteSettings.heroTitle, heroDescription:$('setHeroDescription').value.trim()||defaultSiteSettings.heroDescription, logo:$('setLogo').value.trim()||siteSettings.logo||'', heroImage:$('setHeroImage').value.trim()||siteSettings.heroImage||''};
   saveSiteSettings();
 });
 
 document.getElementById('setLogoFile')?.addEventListener('change', function(event){const file=event.target.files?.[0];if(!file||!file.type.startsWith('image/'))return;const reader=new FileReader();reader.onload=()=>{siteSettings.logo=reader.result;const input=$('setLogo');if(input)input.value='';applySiteSettings();notifySaved('تم تجهيز الشعار، اضغط حفظ إعدادات الموقع لتثبيته.');};reader.readAsDataURL(file);});
+document.getElementById('setHeroImageFile')?.addEventListener('change', function(event){const file=event.target.files?.[0];if(!file||!file.type.startsWith('image/'))return;const reader=new FileReader();reader.onload=()=>{siteSettings.heroImage=reader.result;const input=$('setHeroImage');if(input)input.value='';applySiteSettings();notifySaved('تم تجهيز صورة إطار الهيدر، اضغط حفظ إعدادات الموقع لتثبيتها.');};reader.readAsDataURL(file);});
 
 // Category edits are persisted and immediately reflected in the file form, filters and cards.
 function refreshCategoryUI(){
@@ -6832,7 +6843,7 @@ window.addEventListener(
     const list=document.getElementById('stCategoryList'); if(!list)return;
     list.innerHTML=stCategories.map((x,i)=>'<div class="st-control-row"><strong>'+safe(x.name)+'</strong><small>'+safe(x.label||'')+'</small><span class="color-label">لون</span><input type="color" value="'+safe(x.color||'#aaff22')+'" onchange="stSetCategoryColor('+i+',this.value)"><button type="button" onclick="stEditCategory('+i+')">تعديل</button><button type="button" class="delete" onclick="stDeleteCategory('+i+')">حذف</button></div>').join('');
     const select=document.getElementById('fCat'); if(select) select.innerHTML=stCategories.map(x=>'<option>'+safe(x.name)+'</option>').join('');
-    const adminCount=document.getElementById('adminCategories'); if(adminCount)adminCount.textContent=stCategories.length;
+    const adminCount=document.getElementById('adminCategories'); if(adminCount)adminCount.textContent=stCategories.length; stCategories.forEach((x,i)=>{x.color=x.color||['#38d996','#ffb84d','#66b7ff','#d68cff'][i%4]});
   }
   window.stEditCategory=function(i){const old=stCategories[i].name;const n=prompt('اسم القسم الجديد',old);if(n&&n.trim()){const next=n.trim().toUpperCase();if(stCategories.some((x,j)=>j!==i&&x.name===next))return alert('اسم القسم موجود بالفعل.');const d=prompt('وصف القسم',stCategories[i].label||'')||'';stCategories[i]={name:next,label:d.trim(),color:stCategories[i].color||'#aaff22'};files=files.map(x=>x.cat===old?{...x,cat:next}:x);stSaveCats();saveFiles();stRenderCats();refreshCategoryUI();renderFiles();notifySaved('تم تعديل القسم والملفات التابعة له.');}};
   window.stDeleteCategory=function(i){if(stCategories.length<=1)return alert('يجب أن يبقى قسم واحد على الأقل.');if(confirm('حذف قسم '+stCategories[i].name+'؟')){const removed=stCategories[i].name;stCategories.splice(i,1);stSaveCats();files=files.map(x=>x.cat===removed?{...x,cat:stCategories[0].name}:x);saveFiles();stRenderCats();refreshCategoryUI();renderFiles();notifySaved('تم حذف القسم ونقل ملفاته للقسم الأول.');}};
@@ -6840,6 +6851,7 @@ window.addEventListener(
   document.getElementById('stRenewForm')?.addEventListener('submit',function(e){e.preventDefault();const n=document.getElementById('stRenewName').value.trim(),p=document.getElementById('stRenewPhone').value.trim(),d=document.getElementById('stRenewDevice').value,t=document.getElementById('stRenewPeriod').value,notes=document.getElementById('stRenewNote').value.trim();const text='طلب تجديد اشتراك IPTV\n\nاسم العميل: '+n+'\nرقم العميل: '+p+'\nالجهاز: '+d+'\nالمدة: '+t+'\nملاحظات: '+notes;window.open(WHATSAPP+'?text='+encodeURIComponent(text),'_blank','noopener');});
   const oldShowDashboard=window.showDashboard; window.showDashboard=function(){oldShowDashboard();setTimeout(stRenderCats,50);};
   stRenderCats();
+  stRenderNav();
 })();
 
 
