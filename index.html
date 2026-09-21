@@ -6,7 +6,9 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover">
 
-<meta name="theme-color" content="#030807">
+<meta name="theme-color" content="#070a16">
+<meta name="color-scheme" content="dark">
+<meta name="site-build" content="support-trend-rebuild-2026-09-21">
 
 <title>SUPPORT TREND | مركز السوفتات والتفعيلات</title>
 
@@ -5320,7 +5322,9 @@ function formatNumber(number){
 function writeStorage(key, value){
 
   try{
-    localStorage.setItem(key, JSON.stringify(value));
+    const encoded = JSON.stringify(value);
+    localStorage.setItem(key, encoded);
+    window.dispatchEvent(new CustomEvent('supporttrend:saved',{detail:{key:key}}));
     return true;
   }
   catch(error){
